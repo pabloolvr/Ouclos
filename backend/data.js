@@ -5,7 +5,7 @@ const data = {
             _id: '1',
             image: '/images/p1.png',
             name: "Óculos de Sol Aviador Dourado",
-            quantity: 1,
+            quantity: 58,
             rating: 4.5,
             numReviews: 10,
             //product especifications used in filter
@@ -25,7 +25,7 @@ const data = {
             _id: '2',
             image: '/images/p2.png',
             name: "Óculos de Sol Redondo Preto",
-            quantity: 1,
+            quantity: 15,
             rating: 4.9,
             numReviews: 49,
             //product especifications used in filter
@@ -45,7 +45,7 @@ const data = {
             _id: '3',
             image: '/images/p3.png',
             name: "Óculo de Grau Feminino Preto",
-            quantity: 1,
+            quantity: 0,
             rating: 2.5,
             numReviews: 254,
             //product especifications used in filter

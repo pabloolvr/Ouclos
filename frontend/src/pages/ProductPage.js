@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
@@ -17,6 +17,9 @@ export default function ProductPage(props) {
         dispatch(detailsProduct(productId));
     }, [dispatch, productId]);
 
+    const addToCartHandler = () => {
+        props.history.push(`/cart/${productId}`);
+    }
     return (
         <div>
             {loading ? (
@@ -53,9 +56,13 @@ export default function ProductPage(props) {
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <button className="primary block"> Comprar</button>
-                                </li>
+                                { product.quantity > 0 && (
+                                    <>
+                                        <li>
+                                            <button onClick={addToCartHandler} className="primary block">Add to Cart</button>
+                                        </li>
+                                    </>
+                                )}
                             </ul>
                         </div>
                     </div>

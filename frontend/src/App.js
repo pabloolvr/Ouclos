@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
+import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-
 
 function App() {
     return (
@@ -20,6 +20,7 @@ function App() {
                     </div>
                 </header>
                 <main>
+                    <Route path="/cart/:id?" component={CartPage}></Route>
                     <Route exact path="/" component={HomePage}></Route>
                     <Route path="/product/:id" component={ProductPage}></Route>
                 </main>
