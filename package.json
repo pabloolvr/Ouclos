@@ -1,0 +1,26 @@
+{
+  "name": "projectdevweb",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Web Project for SCC0219",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabloolvr/ProjectDevWeb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pabloolvr/ProjectDevWeb/issues"
+  },
+  "homepage": "https://github.com/pabloolvr/ProjectDevWeb#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
