@@ -121,23 +121,31 @@ a.brand {
 .col-2 {
     flex: 2 1 50rem;
 }
+.min-30 {
+  min-width: 30rem;
+}
+
 /* Image */
+img.small {
+    max-width: 5rem;
+    width: 100%;
+}
 img {
-  border-radius: 0.5rem;
+    border-radius: 0.5rem;
 }
 img.medium {
-  max-width: 29rem;
-  width: 100%;
+    max-width: 29rem;
+    width: 100%;
 }
 img.large {
     width: 100%;
 }
 /* Card */
 .card {
-  border: 0.1rem #c0c0c0 solid;
-  background-color: #f8f8f8;
-  border-radius: 0.5rem;
-  margin: 1rem;
+    border: 0.1rem #c0c0c0 solid;
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
+    margin: 1rem;
 }
 .card-body {
   padding: 1rem;
