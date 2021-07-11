@@ -1,22 +1,31 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Link, Route } from 'react-router-dom'
 import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 
 function App() {
+    // get cartItems from redux
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart;
     return (
         <BrowserRouter>
             <div className="grid-container">
                 <header className="row">
                     <div>
-                    <a className="brand" href="/">
-                        ouclos óculos
-                    </a>
+                        <Link className="brand" to="/">
+                            ouclos óculos
+                        </Link>
                     </div>
                     <div>
-                    <a href="/cart">Cart</a>
-                    <a href="/signin">Sign In</a>
+                        <Link to="/cart">
+                            Cart
+                            {cartItems.length > 0 && (
+                                <span className="badge">{cartItems.length}</span>
+                            )}
+                        </Link>
+                        <Link to="/signin">Sign In</Link>
                     </div>
                 </header>
                 <main>
@@ -24,7 +33,9 @@ function App() {
                     <Route exact path="/" component={HomePage}></Route>
                     <Route path="/product/:id" component={ProductPage}></Route>
                 </main>
-                <footer className="row center">All rights reserved</footer>
+                <footer className="row center">
+                    All rights reserved
+                </footer>
             </div>
         </BrowserRouter>
   );
