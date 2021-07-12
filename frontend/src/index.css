@@ -28,6 +28,11 @@ body {
 header {
   grid-area: header;
   background-color: #000000;
+  align-items: center;
+}
+.row nav {
+    position: relative;
+    border-top: 1px solid #707070;
 }
 main {
   grid-area: main;
@@ -166,6 +171,9 @@ img.large {
   color: #000;
 }
 /* Alert */
+.loading {
+  display: block !important;
+}
 .success {
     color: #20a020;
 }

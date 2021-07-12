@@ -4,6 +4,7 @@ const data = {
     users: [
         {
             name: 'José',
+            surname: 'Oliveira',
             cpf: 32565896345,
             birthdate: "1980-10-28",
             address: 'Rua A, 125',
@@ -13,6 +14,7 @@ const data = {
         },
         {
             name: 'Maria',
+            surname: 'Silva',
             cpf: 98632548795,
             birthdate: "1995-02-10",
             address: 'Rua B, 658',

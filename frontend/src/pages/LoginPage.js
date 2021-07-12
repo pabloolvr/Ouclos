@@ -8,7 +8,7 @@ import MessageBox from '../components/MessageBox';
 export default function LoginPage(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // set redirect addres
+    // set redirect addres, which is used to send the user to the page he intended to go before logging in
     const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
     // get userInfo
     const userLogin = useSelector((state) => state.userLogin);
@@ -64,7 +64,10 @@ export default function LoginPage(props) {
                 <div>
                     <label />
                     <div>
-                        <Link to="/register">não tem uma conta? registre-se aqui</Link>
+                        não tem uma conta? {' '}
+                        <Link to={`/register?redirect=${redirect}`}>
+                            registre-se aqui
+                        </Link>
                     </div>
                 </div>
             </form>

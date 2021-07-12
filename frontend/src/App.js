@@ -6,6 +6,7 @@ import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import ProductPage from './pages/ProductPage';
+import RegisterScreen from './pages/RegisterPage';
 
 function App() {
     // get cartItems from redux
@@ -33,7 +34,7 @@ function App() {
                         {userInfo ? (
                             <div className="dropdown">
                                 <Link to="#">
-                                    minha conta: {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                                    olá {userInfo.name}! <i className="fa fa-caret-down"></i>{' '}
                                 </Link>
                                 <ul className="dropdown-content">
                                     <li>
@@ -57,6 +58,7 @@ function App() {
                 <main>
                     <Route exact path="/" component={HomePage}></Route>
                     <Route path="/login" component={LoginPage}></Route>
+                    <Route path="/register" component={RegisterScreen}></Route>
                     <Route path="/cart/:id?" component={CartPage}></Route>
                     <Route path="/product/:id" component={ProductPage}></Route>
                 </main>
