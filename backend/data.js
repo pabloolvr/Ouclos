@@ -24,7 +24,6 @@ const data = {
     products: [
         {
             // product store information
-            _id: '1',
             image: '/images/p1.png',
             name: "Óculos de Sol Aviador Dourado",
             quantity: 58,
@@ -44,7 +43,6 @@ const data = {
         },
         {
             // product store information
-            _id: '2',
             image: '/images/p2.png',
             name: "Óculos de Sol Redondo Preto",
             quantity: 15,
@@ -64,7 +62,6 @@ const data = {
         },
         {
             // product store information
-            _id: '3',
             image: '/images/p3.png',
             name: "Óculo de Grau Feminino Preto",
             quantity: 0,
