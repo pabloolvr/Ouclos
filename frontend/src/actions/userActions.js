@@ -10,18 +10,23 @@ import {
 } from '../constants/userConstants';
 
 // when user register
-export const register = (name, surname, cpf, birthdate, address, phone, email, password) => async (dispatch) => {
+export const register = (name, surname, cpf, birthdate, publicPlace, publicPlaceNumber, neighborhood, city, state, postalCode, phone, email, password) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { email, password } });
     try {
         const { data } = await Axios.post('/api/users/register', {
-            name,
-            surname,
-            cpf,
-            birthdate,
-            address,
-            phone,
-            email,
-            password,
+            name, 
+            surname, 
+            cpf, 
+            birthdate, 
+            publicPlace, 
+            publicPlaceNumber, 
+            neighborhood, 
+            city, 
+            state, 
+            postalCode, 
+            phone,  
+            email, 
+            password
         });
         // update redux store based on user register
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });

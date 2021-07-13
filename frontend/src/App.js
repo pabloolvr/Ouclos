@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import ProductPage from './pages/ProductPage';
 import RegisterScreen from './pages/RegisterPage';
+import ShippingPage from './pages/ShippingPage';
 
 function App() {
     // get cartItems from redux
@@ -61,6 +62,7 @@ function App() {
                     <Route path="/register" component={RegisterScreen}></Route>
                     <Route path="/cart/:id?" component={CartPage}></Route>
                     <Route path="/product/:id" component={ProductPage}></Route>
+                    <Route path="/shipping" component={ShippingPage}></Route>
                 </main>
                 <footer className="row center">
                     All rights reserved

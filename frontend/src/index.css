@@ -30,10 +30,7 @@ header {
   background-color: #000000;
   align-items: center;
 }
-.row nav {
-    position: relative;
-    border-top: 1px solid #707070;
-}
+
 main {
   grid-area: main;
   padding: 1rem;
@@ -226,4 +223,33 @@ img.large {
 }
 .dropdown:hover .dropdown-content {
   display: block;
+}
+/* Checkout Steps */
+.checkout-steps > div {
+    border-top: 0.3rem #c0c0c0 solid;
+    color: #c0c0c0;
+    flex: 1;
+    padding: 1rem;
+    font-weight: bold;
+}
+.checkout-steps > div.active {
+    border-top-color: #000;
+    color: #000;
+}
+
+/* Register Page */
+.registerContainer {
+    display: flex;
+    align-items: center;
+}
+
+.registerBox  {
+    display: unset;
+    flex-direction: row;
+    flex: 1;
+    border: 2px solid yellow;
+}
+
+.registerBox:first-child  {
+    margin-right: 20px;
 }

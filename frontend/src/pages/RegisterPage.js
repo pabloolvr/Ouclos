@@ -10,7 +10,12 @@ export default function RegisterScreen(props) {
     const [surname, setSurname] = useState('');
     const [cpf, setCPF] = useState('');
     const [birthdate, setBirthdate] = useState('');
-    const [address, setAddress] = useState('');
+    const [publicPlace, setPublicPlace] = useState('');
+    const [publicPlaceNumber, setPublicPlaceNumber] = useState('');
+    const [neighborhood, setNeighborhood] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [postalCode, setPostalCode] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,7 +34,7 @@ export default function RegisterScreen(props) {
         if (password !== confirmPassword) { // if user insert different passwords
             alert('Senha e Confirmar senha não são iguais');
         } else {
-            dispatch(register(name, surname, cpf, birthdate, address, phone, email, password));
+            dispatch(register(name, surname, cpf, birthdate, publicPlace, publicPlaceNumber, neighborhood, city, state, postalCode, phone, email, password));
         }
     };
     useEffect(() => {
@@ -40,11 +45,23 @@ export default function RegisterScreen(props) {
     return (
         <div>
             <form className="form" onSubmit={submitHandler}>
-                <div>
-                    <h1>Criar Conta</h1>
-                </div>
                 {loading && <LoadingBox></LoadingBox>}
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
+                
+                <div className="registerContainer">
+                    <div>
+                        <h1>Criar Conta</h1>
+                    </div>
+                    <div className="registerBox left">
+                        AAAA
+                    </div>
+                    <div className="registerBox right">
+                        BBBB
+                    </div>
+                </div>
+                <div>
+                    <h1>Dados Pessoais</h1>
+                </div>
                 <div>
                     <label htmlFor="name">Nome</label>
                     <input
@@ -87,25 +104,6 @@ export default function RegisterScreen(props) {
                     ></input>
                 </div>
                 <div>
-                    <label htmlFor="address">Endereço</label>
-                    <input
-                        type="text"
-                        id="address"
-                        placeholder="Endereço de entrega"
-                        required
-                        onChange={(e) => setAddress(e.target.value)}
-                    ></input>
-                </div>
-                <div>
-                    <label htmlFor="phone">Telefone</label>
-                    <input
-                        type="text"
-                        id="phone"
-                        placeholder="Opcional"
-                        onChange={(e) => setPhone(e.target.value)}
-                    ></input>
-                </div>
-                <div>
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"
@@ -136,6 +134,73 @@ export default function RegisterScreen(props) {
                     ></input>
                 </div>
                 <div>
+                    <label htmlFor="phone">Telefone</label>
+                    <input
+                        type="text"
+                        id="phone"
+                        placeholder="Opcional"
+                        onChange={(e) => setPhone(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <h1>Endereço</h1>
+                </div>
+                <div>
+                    <label htmlFor="publicPlace">Logradouro</label>
+                    <input
+                        type="text"
+                        id="publicPlace"
+                        placeholder="Ex: Rua das Flores"
+                        onChange={(e) => setPublicPlace(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor="publicPlaceNumber">Número</label>
+                    <input
+                        type="text"
+                        id="publicPlaceNumber"
+                        placeholder="Opcional"
+                        onChange={(e) => setPublicPlaceNumber(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor="neighborhood">Bairro</label>
+                    <input
+                        type="text"
+                        id="neighborhood"
+                        placeholder="Ex: Centro"
+                        onChange={(e) => setNeighborhood(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor="city">Cidade</label>
+                    <input
+                        type="text"
+                        id="city"
+                        placeholder="Ex: São Paulo"
+                        onChange={(e) => setCity(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor="state">Estado</label>
+                    <input
+                        type="text"
+                        id="state"
+                        placeholder="Ex: Minas Gerais"
+                        onChange={(e) => setState(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor="postalCode">CEP</label>
+                    <input
+                        type="text"
+                        id="postalCode"
+                        pattern="[0-9]{5}-[0-9]{3}"
+                        placeholder="99999-999"
+                        onChange={(e) => setPostalCode(e.target.value)}
+                    ></input>
+                </div>
+                <div>
                     <label />
                     <button className="primary" type="submit">
                         cadastrar-se
@@ -145,7 +210,7 @@ export default function RegisterScreen(props) {
                     <label />
                     <div>
                         já tem uma conta?{' '}
-                        <Link to={`/signin?redirect=${redirect}`}>acesse sua conta aqui </Link>
+                        <Link to={`/login?redirect=${redirect}`}>acesse sua conta aqui </Link>
                     </div>
                 </div>
             </form>
