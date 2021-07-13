@@ -5,6 +5,7 @@ import { logout } from './actions/userActions';
 import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import PaymentPage from './pages/PaymentPage';
 import ProductPage from './pages/ProductPage';
 import RegisterScreen from './pages/RegisterPage';
 import ShippingPage from './pages/ShippingPage';
@@ -63,6 +64,7 @@ function App() {
                     <Route path="/cart/:id?" component={CartPage}></Route>
                     <Route path="/product/:id" component={ProductPage}></Route>
                     <Route path="/shipping" component={ShippingPage}></Route>
+                    <Route path="/payment" component={PaymentPage}></Route>
                 </main>
                 <footer className="row center">
                     All rights reserved

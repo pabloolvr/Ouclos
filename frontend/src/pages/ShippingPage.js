@@ -17,7 +17,7 @@ export default function ShippingPage(props) {
     }
     // data for shipping address
     // if there is data in shippingAddres from localStorage, show this data for each field, otherwise, show data from the database
-    const [fullName, setFullName] = useState(userInfo.name + ' ' + userInfo.surname);
+    const [fullName, setFullName] = useState(shippingAddress.fullName ? shippingAddress.fullName : userInfo.name + ' ' + userInfo.surname);
     const [publicPlace, setPublicPlace] = useState(shippingAddress.publicPlace ? shippingAddress.publicPlace : userInfo.publicPlace );
     const [publicPlaceNumber, setPublicPlaceNumber] = useState(shippingAddress.publicPlaceNumber ? shippingAddress.publicPlaceNumber : userInfo.publicPlaceNumber );
     const [neighborhood, setNeighborhood] = useState(shippingAddress.neighborhood ? shippingAddress.neighborhood : userInfo.neighborhood );
