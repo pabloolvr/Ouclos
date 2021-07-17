@@ -6,6 +6,7 @@ import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import PaymentPage from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProductPage from './pages/ProductPage';
 import RegisterScreen from './pages/RegisterPage';
 import ShippingPage from './pages/ShippingPage';
@@ -65,6 +66,7 @@ function App() {
                     <Route path="/product/:id" component={ProductPage}></Route>
                     <Route path="/shipping" component={ShippingPage}></Route>
                     <Route path="/payment" component={PaymentPage}></Route>
+                    <Route path="/placeorder" component={PlaceOrderPage}></Route>
                 </main>
                 <footer className="row center">
                     All rights reserved

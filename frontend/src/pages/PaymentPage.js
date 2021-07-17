@@ -28,7 +28,7 @@ export default function PaymentPage(props) {
                         <input
                             type="radio"
                             id="credit"
-                            value="Credit"
+                            value="Cartão de Crédito"
                             name="paymentMethod"
                             required
                             checked
@@ -42,7 +42,7 @@ export default function PaymentPage(props) {
                         <input
                             type="radio"
                             id="debit"
-                            value="Debit"
+                            value="Cartão de Débito"
                             name="paymentMethod"
                             required
                             onChange={(e) => setPaymentMethod(e.target.value)}

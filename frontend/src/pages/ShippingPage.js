@@ -7,7 +7,7 @@ export default function ShippingPage(props) {
     // get user information
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
-    // get cart information where it is stored shipping addres
+    // get cart information where it is stored shipping address
     const cart = useSelector((state) => state.cart);
     const { shippingAddress } = cart;
     // verify if user is logged in
