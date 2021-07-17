@@ -10,7 +10,7 @@ const userRouter = express.Router();
 userRouter.get(
     '/seed',
     expressAsyncHandler(async (req, res) => {
-        await User.deleteMany({}); // remove all users from database
+        // await User.deleteMany({}); // remove all users from database
         const createdUsers = await User.insertMany(data.users); // insert pre-defined admin into database
         res.send({ createdUsers });
     })

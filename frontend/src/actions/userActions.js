@@ -47,7 +47,7 @@ export const register = (name, surname, cpf, birthdate, publicPlace, publicPlace
 export const login = (email, password) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST, payload: { email, password } });
     try {
-        const { data } = await Axios.post('/api/users/LOGin', { email, password });
+        const { data } = await Axios.post('/api/users/login', { email, password });
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
         localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {

@@ -13,6 +13,7 @@ export default function PaymentPage(props) {
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
+        // dispatch the savePaymentMethod cart action
         dispatch(savePaymentMethod(paymentMethod));
         props.history.push('/placeorder');
     };

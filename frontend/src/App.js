@@ -41,7 +41,7 @@ function App() {
                                 </Link>
                                 <ul className="dropdown-content">
                                     <li>
-                                        <Link to="#logout" onClick={logoutHandler}>
+                                        <Link to="/login" onClick={logoutHandler}>
                                             Sair
                                         </Link>
                                     </li>
