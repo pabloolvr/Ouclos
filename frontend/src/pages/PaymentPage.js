@@ -9,7 +9,7 @@ export default function PaymentPage(props) {
     if (!shippingAddress.fullName) {
         props.history.push('/shipping');
     }
-    const [paymentMethod, setPaymentMethod] = useState('Credit');
+    const [paymentMethod, setPaymentMethod] = useState('Cartão de Crédito');
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();

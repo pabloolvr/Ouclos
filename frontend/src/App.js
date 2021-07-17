@@ -5,6 +5,7 @@ import { logout } from './actions/userActions';
 import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import OrderPage from './pages/OrderPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProductPage from './pages/ProductPage';
@@ -67,6 +68,7 @@ function App() {
                     <Route path="/shipping" component={ShippingPage}></Route>
                     <Route path="/payment" component={PaymentPage}></Route>
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>
+                    <Route path="/order/:id" component={OrderPage}></Route>
                 </main>
                 <footer className="row center">
                     All rights reserved
