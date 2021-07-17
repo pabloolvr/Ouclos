@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createOrder } from '../actions/orderActions';
+import { createOrder, payOrder } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { ORDER_CREATE_RESET } from '../constants/orderConstants';
+import { ORDER_CREATE_RESET, ORDER_PAY_RESET } from '../constants/orderConstants';
 
 export default function PlaceOrderPage(props) {
     // get cart information from redux store
@@ -24,17 +24,28 @@ export default function PlaceOrderPage(props) {
     cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
     //cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
+/*
+    const orderPay = useSelector((state) => state.orderPay);
+    const {
+        loading: loadingPay,
+        error: errorPay,
+        success: successPay,
+    } = orderPay;
+*/
     // dispatch place order action
     const dispatch = useDispatch();
-    const placeOrderHandler = () => {
+    const placeOrderHandler = (/*paymentResult*/) => {
         dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+        dispatch(payOrder(order/*, paymentResult*/));
     };
+
     useEffect(() => {
         if (success) {
             props.history.push(`/order/${order._id}`); // go to order page
             dispatch({ type: ORDER_CREATE_RESET });
+            dispatch({ type: ORDER_PAY_RESET });
         }
-    }, [dispatch, order, props.history, success]);
+    }, [dispatch, order, props.history, success]);    
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -54,9 +65,13 @@ export default function PlaceOrderPage(props) {
                         </li>
                         <li>
                             <div className="card card-body">
-                                <h2>Método de Pagamento</h2>
+                                <h2>Pagamento</h2>
                                 <p>
-                                    <strong>Method:</strong> {cart.paymentMethod}
+                                    <strong>Método de Pagamento:</strong> {cart.paymentMethod.method} <br />
+                                    <strong>Número do Cartão:</strong> {cart.paymentMethod.cardNumber} <br />
+                                    <strong>Validade do Cartão:</strong> {cart.paymentMethod.cardExpirationDate} <br />
+                                    <strong>Código de Segurança do Cartão:</strong> {cart.paymentMethod.cardSecurityCode} <br />
+                                    <strong>CPF do titular:</strong> {cart.paymentMethod.ownerCPF} <br />
                                 </p>
                             </div>
                         </li>

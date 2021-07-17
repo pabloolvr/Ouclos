@@ -46,7 +46,11 @@ export default function OrderPage(props) {
                             <div className="card card-body">
                                 <h2>Pagamento</h2>
                                 <p>
-                                    <strong>Méotod:</strong> {order.paymentMethod}
+                                    <strong>Método de Pagamento:</strong> {order.paymentMethod.method} <br />
+                                    <strong>Número do Cartão:</strong> {order.paymentMethod.cardNumber} <br />
+                                    <strong>Validade do Cartão:</strong> {order.paymentMethod.cardExpirationDate} <br />
+                                    <strong>Código de Segurança do Cartão:</strong> {order.paymentMethod.cardSecurityCode} <br />
+                                    <strong>CPF do titular:</strong> {order.paymentMethod.ownerCPF} <br />
                                 </p>
                                 {order.isPaid ? (
                                     <MessageBox variant="success">
@@ -116,6 +120,11 @@ export default function OrderPage(props) {
                                     </div>
                                 </div>
                             </li>
+                            {!order.isPaid && (
+                                <li>
+                                    
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
