@@ -61,8 +61,8 @@ export default function PaymentPage(props) {
                     <input
                         type="text"
                         id="cardNumber"
-                        pattern="\d{4}\ \d{4}\ \d{4}\ \d{4}"
-                        placeholder="9999 9999 9999 9999"
+                        pattern="[0-9]{4}-?[0-9]{4}-?[0-9]{4}-?[0-9]{4}"
+                        placeholder="9999-9999-9999-9999"
                         value={cardNumber}
                         onChange={(e) => setCardNumber(e.target.value)}
                         required

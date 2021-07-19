@@ -12,7 +12,6 @@ import {
     ORDER_PAY_SUCCESS,
 } from '../constants/orderConstants';
 
-
 // create order
 export const createOrder = (order) => async (dispatch, getState) => {
     // make a request to create order
@@ -22,9 +21,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState();
         const { data } = await Axios.post('/api/orders', order, {
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`,
-            },
+            headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: ORDER_CREATE_SUCCESS, payload: data.order });
         dispatch({ type: CART_EMPTY });
@@ -60,17 +57,20 @@ export const getOrderDetails = (orderId) => async (dispatch, getState) => {
     }
 };
 
-export const payOrder = (order/*, paymentResult*/) => async (dispatch, getState) => {
-    dispatch({ type: ORDER_PAY_REQUEST, payload: { order/*, paymentResult */} });
+export const payOrder = (order) => async (dispatch, getState) => {
+    console.log('chamou payOrder');
+    dispatch({ type: ORDER_PAY_REQUEST, payload: order});
     const {
         userLogin: { userInfo },
     } = getState();
     try {
-        const { data } = Axios.put(`/api/orders/${order._id}/pay`/*, paymentResult*/, {
+        const { data } = Axios.put(`/api/orders/${order._id}/pay`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
+        console.log('sucesso no payOrder');
     } catch (error) {
+        console.log('erro no payOrder');
         const message =
             error.response && error.response.data.message
                 ? error.response.data.message

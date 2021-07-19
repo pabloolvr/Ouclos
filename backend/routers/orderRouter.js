@@ -18,6 +18,8 @@ orderRouter.post('/', isAuth, expressAsyncHandler(async (req, res) => {
                 shippingPrice: req.body.shippingPrice,
                 totalPrice: req.body.totalPrice,
                 user: req.user._id,
+                isPaid: true,
+                paidAt: Date.now(),
             });
             // create order
             const createdOrder = await order.save();
@@ -30,18 +32,22 @@ orderRouter.post('/', isAuth, expressAsyncHandler(async (req, res) => {
 // get order
 orderRouter.get('/:id', isAuth, expressAsyncHandler(async (req, res) => {
         // find order in database
+        //console.log('idOrder: ' + req.params.id);
         const order = await Order.findById(req.params.id);
         if (order) {
             res.send(order);
         } else {
             res.status(404).send({ message: 'Order Not Found' });
+            res.status(401).send({req});
         }
+    console.log('from get order ' + req.params.id);
     })
 );
 
 orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async (req, res) => {
     // find order in database
-        const order = await Order.findById(req.params.id);
+    console.log('idOrder: ' + req.params.id);
+    const order = await Order.findById(req.params.id);
         if (order) {
             order.isPaid = true;
             order.paidAt = Date.now();
@@ -56,7 +62,9 @@ orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async (req, res) => {
             res.send({ message: 'Order Paid', order: updatedOrder });
         } else {
             res.status(404).send({ message: 'Order Not Found' });
+            res.status(401).send(req);
         }
+        console.log('from pay order');
     })
 );
 
