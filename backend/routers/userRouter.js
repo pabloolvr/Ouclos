@@ -7,18 +7,15 @@ import { generateToken } from '../utils.js';
 
 const userRouter = express.Router();
 
-userRouter.get(
-    '/seed',
-    expressAsyncHandler(async (req, res) => {
-        // await User.deleteMany({}); // remove all users from database
+// get data of all users
+userRouter.get('/seed', expressAsyncHandler(async (req, res) => {
+        await User.deleteMany({}); // remove all users from database
         const createdUsers = await User.insertMany(data.users); // insert pre-defined admin into database
         res.send({ createdUsers });
     })
 );
 // login request
-userRouter.post(
-    '/login',
-    expressAsyncHandler(async (req, res) => {
+userRouter.post('/login', expressAsyncHandler(async (req, res) => {
         const user = await User.findOne({ email: req.body.email });
         if (user) {
             // compare password received and password stored
@@ -47,9 +44,7 @@ userRouter.post(
     })
 );
 // register request
-userRouter.post(
-    '/register',
-    expressAsyncHandler(async (req, res) => {
+userRouter.post('/register', expressAsyncHandler(async (req, res) => {
         const user = new User({
             name: req.body.name,
             surname: req.body.surname,
@@ -83,6 +78,16 @@ userRouter.post(
             isAdmin: createdUser.isAdmin,
             token: generateToken(createdUser),
         });
+    })
+);
+// get data of a user by its id
+userRouter.get('/:id', expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            res.send(user);
+        } else {
+            res.status(404).send({ message: 'User Not Found' });
+        }
     })
 );
 

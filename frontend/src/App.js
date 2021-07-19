@@ -10,6 +10,7 @@ import OrderPage from './pages/OrderPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProductPage from './pages/ProductPage';
+import ProfilePage from './pages/ProfilePage';
 import RegisterScreen from './pages/RegisterPage';
 import ShippingPage from './pages/ShippingPage';
 
@@ -43,6 +44,9 @@ function App() {
                                 </Link>
                                 <ul className="dropdown-content">
                                     <li>
+                                        <Link to="/profile">Perfil</Link>
+                                    </li>
+                                    <li>
                                         <Link to="/orderhistory">Pedidos</Link>
                                     </li>
                                     <li>
@@ -74,6 +78,7 @@ function App() {
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>
                     <Route path="/order/:id" component={OrderPage}></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
+                    <Route path="/profile" component={ProfilePage}></Route>
                 </main>
                 <footer className="row center">
                     All rights reserved

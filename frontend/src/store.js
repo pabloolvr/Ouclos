@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducer';
 import { orderCreateReducer, orderDetailsReducer, orderListReducer, orderPayReducer } from './reducers/orderReducer';
 import { productDetailsReducer, productListReducer } from './reducers/productReducers';
-import { userLoginReducer, userRegisterReducer } from './reducers/userReducer';
+import { userDetailsReducer, userLoginReducer, userRegisterReducer } from './reducers/userReducer';
 
 const initialState = {
     // get user info from localStorage
@@ -37,6 +37,7 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     orderList: orderListReducer,
+    userDetails: userDetailsReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
