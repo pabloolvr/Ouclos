@@ -5,6 +5,16 @@ import { isAuth } from '../utils.js';
 
 const orderRouter = express.Router();
 
+// find orders by user
+orderRouter.get(
+    '/mine',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const orders = await Order.find({ user: req.user._id });
+        res.send(orders);
+    })
+);
+
 // post order
 orderRouter.post('/', isAuth, expressAsyncHandler(async (req, res) => {
         if (req.body.orderItems.length === 0) {

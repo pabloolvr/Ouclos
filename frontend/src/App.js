@@ -5,6 +5,7 @@ import { logout } from './actions/userActions';
 import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 import OrderPage from './pages/OrderPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
@@ -42,6 +43,9 @@ function App() {
                                 </Link>
                                 <ul className="dropdown-content">
                                     <li>
+                                        <Link to="/orderhistory">Pedidos</Link>
+                                    </li>
+                                    <li>
                                         <Link to="/login" onClick={logoutHandler}>
                                             Sair
                                         </Link>
@@ -69,6 +73,7 @@ function App() {
                     <Route path="/payment" component={PaymentPage}></Route>
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>
                     <Route path="/order/:id" component={OrderPage}></Route>
+                    <Route path="/orderhistory" component={OrderHistoryPage}></Route>
                 </main>
                 <footer className="row center">
                     All rights reserved
