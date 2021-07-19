@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Link, Route } from 'react-router-dom'
 import { logout } from './actions/userActions';
+import PrivateRoute from './components/PrivateRoute';
 import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -78,7 +79,7 @@ function App() {
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>
                     <Route path="/order/:id" component={OrderPage}></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
-                    <Route path="/profile" component={ProfilePage}></Route>
+                    <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
                 </main>
                 <footer className="row center">
                     All rights reserved

@@ -118,7 +118,7 @@ export default function RegisterScreen(props) {
                     <input
                         type="password"
                         id="password"
-                        placeholder="Enter password"
+                        placeholder="Digitar senha"
                         required
                         onChange={(e) => setPassword(e.target.value)}
                     ></input>
@@ -128,7 +128,7 @@ export default function RegisterScreen(props) {
                     <input
                         type="password"
                         id="confirmPassword"
-                        placeholder="Enter confirm password"
+                        placeholder="Confirmar senha"
                         required
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     ></input>
