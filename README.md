@@ -34,11 +34,10 @@ Navigation Diagram:
  - Start the application by running 'npm run start' from the command line in the project root folder .
  - Your browser should automatically open at http://localhost:3000
 
-### 1. Clone repo
+### 1. Download or Clone repo
 
 ```
-$ git clone git@github.com:basir/amazona.git
-$ cd amazona
+$ git@github.com:pabloolvr/ProjectDevWeb.git
 ```
 
 ### 2. Setup MongoDB
@@ -55,6 +54,7 @@ $ cd amazona
 ### 3. Run Backend
 
 ```
+$ cd ProjectDevWeb
 $ npm install
 $ npm start
 ```
