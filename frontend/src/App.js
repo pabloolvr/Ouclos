@@ -77,7 +77,7 @@ function App() {
                                         <Link to="/dashboard">Dashboard</Link>
                                     </li>
                                     <li>
-                                        <Link to="/productlist">Products</Link>
+                                        <Link to="/productlist">Produtos</Link>
                                     </li>
                                     <li>
                                         <Link to="/orderlist">Orders</Link>
@@ -105,7 +105,7 @@ function App() {
                     <Route path="/shipping" component={ShippingPage}></Route>
                     <Route path="/payment" component={PaymentPage}></Route>
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>
-                    <Route path="/order/:id" component={OrderPage}></Route>
+                    <Route path="/order/:id" component={OrderPage} exact></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
                     <PrivateRoute path="/profile" component={UpdateProfilePage}></PrivateRoute>
                     <PrivateRoute path="/address" component={UpdateAddressPage}></PrivateRoute>

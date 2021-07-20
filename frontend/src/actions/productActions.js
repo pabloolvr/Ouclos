@@ -1,5 +1,8 @@
 import Axios from "axios";
 import { 
+    PRODUCT_CREATE_FAIL,
+    PRODUCT_CREATE_REQUEST,
+    PRODUCT_CREATE_SUCCESS,
     PRODUCT_DETAILS_FAIL, 
     PRODUCT_DETAILS_REQUEST, 
     PRODUCT_DETAILS_SUCCESS, 
@@ -8,6 +11,7 @@ import {
     PRODUCT_LIST_SUCCESS 
 } from "../constants/productConstants";
 
+// use api to get list of products
 export const listProducts = () => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST
@@ -19,7 +23,7 @@ export const listProducts = () => async (dispatch) => {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: e.message })
     }
 };
-
+// use api to get details from a product 
 export const detailsProduct = (productId) => async(dispatch) => {
     dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId});
     try {
@@ -32,5 +36,29 @@ export const detailsProduct = (productId) => async(dispatch) => {
             ? error.response.data.message
             : error.message,
         });
+    }
+};
+// use api to create a product
+export const createProduct = () => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_CREATE_REQUEST });
+    const {
+        userLogin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await Axios.post('/api/products', {},
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` },
+            }
+        );
+        dispatch({
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: data.product,
+        });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: PRODUCT_CREATE_FAIL, payload: message });
     }
 };
