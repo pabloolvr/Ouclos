@@ -49,7 +49,7 @@ $ git@github.com:pabloolvr/ProjectDevWeb.git
 - Atlas Cloud MongoDB
   - Create database at [https://cloud.mongodb.com](https://cloud.mongodb.com)
   - Create .env file in root folder
-  - Set MONGODB_URL=MONGODB_URL=mongodb+srv://your-db-connection
+  - Set MONGODB_URL=mongodb+srv://your-db-connection
 
 ### 3. Run Backend
 
