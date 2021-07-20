@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getParticularOrderList } from '../actions/orderActions';
+import { listOrders } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
-export default function OrderHistoryPage(props) {
-    const orderParticularList = useSelector((state) => state.orderParticularList);
-    const { loading, error, orders } = orderParticularList;
-
+export default function OrderListPage(props) {
+    const orderList = useSelector((state) => state.orderList);
+    const { loading, error, orders } = orderList;
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getParticularOrderList());
+        dispatch(listOrders());
     }, [dispatch]);
-
+    const deleteHandler = (order) => {
+        // TODO: delete handler
+    };
     return (
         <div>
-            <h1>Histórico de Pedidos</h1>
+            <h1>Orders</h1>
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (
@@ -25,6 +26,7 @@ export default function OrderHistoryPage(props) {
                     <thead>
                         <tr>
                             <th>Código do Pedido</th>
+                            <th>Usuário</th>
                             <th>Data de Criação</th>
                             <th>Total</th>
                             <th>Data de Pagamento</th>
@@ -36,6 +38,7 @@ export default function OrderHistoryPage(props) {
                         {orders.map((order) => (
                             <tr key={order._id}>
                                 <td>{order._id}</td>
+                                <td>{order.user.name}</td>
                                 <td>{order.createdAt.substring(0, 10)}</td>
                                 <td>{order.totalPrice.toFixed(2)}</td>
                                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'Não'}</td>
@@ -52,7 +55,14 @@ export default function OrderHistoryPage(props) {
                                             props.history.push(`/order/${order._id}`);
                                         }}
                                     >
-                                        Detalhes
+                                        Details
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="small"
+                                        onclick={() => deleteHandler(order)}
+                                    >
+                                        Delete
                                     </button>
                                 </td>
                             </tr>

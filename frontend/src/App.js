@@ -19,6 +19,7 @@ import UpdateProfilePage from './pages/UpdateProfilePage';
 import RegisterScreen from './pages/RegisterPage';
 import ShippingPage from './pages/ShippingPage';
 import UpdateAddressPage from './pages/UpdateAddresPage';
+import OrderListPage from './pages/OrderListPage';
 
 
 
@@ -115,6 +116,7 @@ function App() {
                     <PrivateRoute path="/profile" component={UpdateProfilePage}></PrivateRoute>
                     <PrivateRoute path="/address" component={UpdateAddressPage}></PrivateRoute>
                     <AdminRoute path="/productlist" component={ProductListPage}></AdminRoute>
+                    <AdminRoute path="/orderlist" component={OrderListPage}></AdminRoute>
                 </main>
                 <footer className="row center">
                     All rights reserved

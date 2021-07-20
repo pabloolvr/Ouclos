@@ -10,6 +10,9 @@ import {
     ORDER_PAY_REQUEST,
     ORDER_PAY_FAIL,
     ORDER_PAY_SUCCESS,
+    ORDER_PARTICULAR_LIST_REQUEST,
+    ORDER_PARTICULAR_LIST_SUCCESS,
+    ORDER_PARTICULAR_LIST_FAIL,
     ORDER_LIST_REQUEST,
     ORDER_LIST_SUCCESS,
     ORDER_LIST_FAIL,
@@ -81,9 +84,9 @@ export const payOrder = (order) => async (dispatch, getState) => {
         dispatch({ type: ORDER_PAY_FAIL, payload: message });
     }
 };
-
-export const getOrderList = () => async (dispatch, getState) => {
-    dispatch({ type: ORDER_LIST_REQUEST });
+// get list of orders of an specific user
+export const getParticularOrderList = () => async (dispatch, getState) => {
+    dispatch({ type: ORDER_PARTICULAR_LIST_REQUEST });
     const {
         userLogin: { userInfo },
     } = getState();
@@ -93,6 +96,26 @@ export const getOrderList = () => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`,
             },
         });
+        dispatch({ type: ORDER_PARTICULAR_LIST_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: ORDER_PARTICULAR_LIST_FAIL, payload: message });
+    }
+};
+// get list of all orders made
+export const listOrders = () => async (dispatch, getState) => {
+    dispatch({ type: ORDER_LIST_REQUEST });
+    const {
+        userLogin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await Axios.get('/api/orders', {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        console.log(data);
         dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
     } catch (error) {
         const message =
