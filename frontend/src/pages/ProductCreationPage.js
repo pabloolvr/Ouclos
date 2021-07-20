@@ -6,7 +6,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
-export default function ProductEditPage(props) {
+export default function ProductCreationPage(props) {
     const productId = props.match.params.id;
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
@@ -34,7 +34,7 @@ export default function ProductEditPage(props) {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        // if updated succesfully, reload page
+        // if created succesfully, reload page
         if (successUpdate) {
             props.history.push('/productlist');
         }
@@ -42,20 +42,6 @@ export default function ProductEditPage(props) {
             // if product does not exist or productId is not the desired, reload page
             dispatch({ type: PRODUCT_UPDATE_RESET });
             dispatch(detailsProduct(productId));
-        } else { // set product values on form
-            setName(product.name);
-            setImage(product.image);
-            setQuantity(product.quantity);
-            setCategory(product.category);
-            setPrice(product.price);
-            setGender(product.gender);
-            setLensMaterial(product.lensMaterial);
-            setFrameMaterial(product.frameMaterial);
-            setStyle(product.style);
-            setLensColor(product.lensColor);
-            setFrameColor(product.frameColor);
-            setLensProtection(product.lensProtection);
-            setDescription(product.description);
         }
     }, [product, dispatch, productId, successUpdate, props.history]);
     const submitHandler = (e) => {
@@ -112,7 +98,7 @@ export default function ProductEditPage(props) {
         <div>
             <form className="form" onSubmit={submitHandler}>
                 <div>
-                    <h1>Alterar Produto {productId}</h1>
+                    <h1>Criar Produto {productId}</h1>
                 </div>
                 {loadingUpdate && <LoadingBox></LoadingBox>}
                 {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
@@ -127,8 +113,9 @@ export default function ProductEditPage(props) {
                             <input
                                 id="name"
                                 type="text"
-                                placeholder="Enter name"
+                                placeholder="Nome Único do produto"
                                 value={name}
+                                required
                                 onChange={(e) => setName(e.target.value)}
                             ></input>
                         </div>
@@ -137,19 +124,10 @@ export default function ProductEditPage(props) {
                             <input
                                 id="price"
                                 type="text"
-                                placeholder="Enter price"
+                                placeholder="Ex: 129.99"
                                 value={price}
+                                required
                                 onChange={(e) => setPrice(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="image">Imagem</label>
-                            <input
-                                id="image"
-                                type="text"
-                                placeholder="Enter image"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
                             ></input>
                         </div>
                         <div>
@@ -170,14 +148,15 @@ export default function ProductEditPage(props) {
                             <input
                                 id="quantity"
                                 type="text"
-                                placeholder="Enter quantity"
+                                placeholder="Quantidade no estoque"
                                 value={quantity}
+                                required
                                 onChange={(e) => setQuantity(e.target.value)}
                             ></input>
                         </div>
                         <div>
                             <label htmlFor="category">Categoria</label>
-                            <select name="category" id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+                            <select name="category" id="category" value={category} required onChange={(e) => setCategory(e.target.value)}>
                                 <option value="" >Não definido</option>
                                 <option value="Óculos de Sol">Óculos de Sol</option>
                                 <option value="Óculos de Grau">Óculos de Grau</option>
@@ -186,7 +165,7 @@ export default function ProductEditPage(props) {
                         </div>
                         <div>
                             <label htmlFor="gender">Gênero</label>
-                            <select name="gender" id="gender" value={gender} onChange={(e) => setGender(e.target.value)}>
+                            <select name="gender" id="gender" value={gender} required onChange={(e) => setGender(e.target.value)}>
                                 <option value="" >Não definido</option>
                                 <option value="Unissex">Unissex</option>
                                 <option value="Masculino">Masculino</option>
@@ -200,6 +179,7 @@ export default function ProductEditPage(props) {
                                 type="text"
                                 placeholder="Estilo do Óculos"
                                 value={style}
+                                required
                                 onChange={(e) => setStyle(e.target.value)}
                             ></input>
                         </div>
@@ -210,6 +190,7 @@ export default function ProductEditPage(props) {
                                 type="text"
                                 placeholder="Óculos de Sol, Óculos de Grau ou Óculos de Computador"
                                 value={lensMaterial}
+                                required
                                 onChange={(e) => setLensMaterial(e.target.value)}
                             ></input>
                         </div>
@@ -220,6 +201,7 @@ export default function ProductEditPage(props) {
                                 type="text"
                                 placeholder="Material da Lente"
                                 value={frameMaterial}
+                                required
                                 onChange={(e) => setFrameMaterial(e.target.value)}
                             ></input>
                         </div>
@@ -230,6 +212,7 @@ export default function ProductEditPage(props) {
                                 type="text"
                                 placeholder="Cor da Lente"
                                 value={lensColor}
+                                required
                                 onChange={(e) => setLensColor(e.target.value)}
                             ></input>
                         </div>
@@ -240,6 +223,7 @@ export default function ProductEditPage(props) {
                                 type="text"
                                 placeholder="Cor da Armação"
                                 value={frameColor}
+                                required
                                 onChange={(e) => setFrameColor(e.target.value)}
                             ></input>
                         </div>
@@ -250,6 +234,7 @@ export default function ProductEditPage(props) {
                                 type="text"
                                 placeholder="Proteção da Lente"
                                 value={lensProtection}
+                                required
                                 onChange={(e) => setLensProtection(e.target.value)}
                             ></input>
                         </div>
@@ -261,13 +246,14 @@ export default function ProductEditPage(props) {
                                 type="text"
                                 placeholder="Descrição do produto"
                                 value={description}
+                                required
                                 onChange={(e) => setDescription(e.target.value)}
                             ></textarea>
                         </div>
                         <div>
                             <label></label>
                             <button className="primary" type="submit">
-                                Update
+                                Criar Produto
                             </button>
                         </div>
                     </>
