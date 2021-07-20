@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsProduct } from '../actions/productActions';
+import axios from '../../node_modules/axios/index';
+import { detailsProduct, updateProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 export default function ProductEditPage(props) {
     const productId = props.match.params.id;
@@ -19,14 +21,28 @@ export default function ProductEditPage(props) {
     const [frameColor, setFrameColor] = useState('');
     const [lensProtection, setLensProtection] = useState('');
     const [description, setDescription] = useState('');
-
+    // use redux store to get productDetails
     const productDetails = useSelector((state) => state.productDetails);
     const { loading, error, product } = productDetails;
+    // change productUpdate in redux store
+    const productUpdate = useSelector((state) => state.productUpdate);
+    const {
+        loading: loadingUpdate,
+        error: errorUpdate,
+        success: successUpdate,
+    } = productUpdate;
+
     const dispatch = useDispatch();
     useEffect(() => {
-        if (!product || product._id !== productId) {
+        // if updated succesfully, reload page
+        if (successUpdate) {
+            props.history.push('/productlist');
+        }
+        if (!product || product._id !== productId || successUpdate) {
+            // if product does not exist or productId is not the desired, reload page
+            dispatch({ type: PRODUCT_UPDATE_RESET });
             dispatch(detailsProduct(productId));
-        } else {
+        } else { // set product values on form
             setName(product.name);
             setImage(product.image);
             setQuantity(product.quantity);
@@ -41,17 +57,65 @@ export default function ProductEditPage(props) {
             setLensProtection(product.lensProtection);
             setDescription(product.description);
         }
-    }, [product, dispatch, productId]);
+    }, [product, dispatch, productId, successUpdate, props.history]);
     const submitHandler = (e) => {
         e.preventDefault();
         // TODO: dispatch update product
+        dispatch(
+            updateProduct({
+                _id: productId,
+                name,
+                image,
+                quantity,
+                category,
+                price,
+                gender,
+                lensMaterial,
+                frameMaterial,
+                style,
+                lensColor,
+                frameColor,
+                lensProtection,
+                description,
+            })
+        )
     };
+
+    const [loadingUpload, setLoadingUpload] = useState(false);
+    const [errorUpload, setErrorUpload] = useState('');
+    // get user information form redux store
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        setLoadingUpload(true);
+        // make ajax request to upload file
+        try {
+            const { data } = await axios.post('/api/uploads', bodyFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            });
+            setImage(data);
+            setLoadingUpload(false);
+        } catch (error) {
+            setErrorUpload(error.message);
+            setLoadingUpload(false);
+        }
+    };
+
     return (
         <div>
             <form className="form" onSubmit={submitHandler}>
                 <div>
                     <h1>Alterar Produto {productId}</h1>
                 </div>
+                {loadingUpdate && <LoadingBox></LoadingBox>}
+                {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
                 {loading ? (
                     <LoadingBox></LoadingBox>
                 ) : error ? (
@@ -89,6 +153,19 @@ export default function ProductEditPage(props) {
                             ></input>
                         </div>
                         <div>
+                            <label htmlFor="imageFile">Arquivo de Imagem</label>
+                            <input
+                                type="file"
+                                id="imageFile"
+                                label="Choose Image"
+                                onChange={uploadFileHandler}
+                            ></input>
+                            {loadingUpload && <LoadingBox></LoadingBox>}
+                            {errorUpload && (
+                                <MessageBox variant="danger">{errorUpload}</MessageBox>
+                            )}
+                        </div>
+                        <div>
                             <label htmlFor="quantity">Quantidade no Estoque</label>
                             <input
                                 id="quantity"
@@ -100,32 +177,12 @@ export default function ProductEditPage(props) {
                         </div>
                         <div>
                             <label htmlFor="category">Categoria</label>
-                            <input
-                                id="category"
-                                type="text"
-                                placeholder="Óculos de Sol, Óculos de Grau ou Óculos de Computador"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="category">Categoria</label>
                             <select name="category" id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
                                 <option value="" >Não definido</option>
                                 <option value="Óculos de Sol">Óculos de Sol</option>
                                 <option value="Óculos de Grau">Óculos de Grau</option>
                                 <option value="Óculos de Computador">Óculos de Computador</option>
                             </select>
-                        </div>
-                        <div>
-                            <label htmlFor="gender">Gênero</label>
-                            <input
-                                id="gender"
-                                type="text"
-                                placeholder="Masculino, Feminino ou Unissex"
-                                value={gender}
-                                onChange={(e) => setGender(e.target.value)}
-                            ></input>
                         </div>
                         <div>
                             <label htmlFor="gender">Gênero</label>

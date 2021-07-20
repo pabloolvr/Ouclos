@@ -4,7 +4,7 @@ import data from '../data.js';
 import Product from '../models/productModel.js';
 import { isAdmin, isAuth } from '../utils.js';
 
-const productRouter = express.Router();
+const productRouter = express.Router(); // defines api routers for products
 // get all data from database
 productRouter.get('/', expressAsyncHandler(async (req, res) => {
         const products = await Product.find({});
@@ -29,7 +29,7 @@ productRouter.get('/:id', expressAsyncHandler(async (req, res) => {
         }
     })
 );
-
+// create product
 productRouter.post('/', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
         const product = new Product({
             name: 'sample name ' + Date.now(),
@@ -52,5 +52,29 @@ productRouter.post('/', isAuth, isAdmin, expressAsyncHandler(async (req, res) =>
         res.send({ message: 'Product Created', product: createdProduct });
     })
 );
-
+// update product by its id
+productRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+        const productId = req.params.id;
+        const product = await Product.findById(productId);
+        if (product) {
+            product.name = req.body.name;
+            product.image = req.body.image;
+            product.price = req.body.price;
+            product.category = req.body.category;
+            product.description = req.body.description;
+            product.quantity = req.body.quantity;
+            product.gender = req.body.gender;
+            product.lensMaterial = req.body.lensMaterial;
+            product.frameMaterial = req.body.frameMaterial;
+            product.style = req.body.style;
+            product.lensColor = req.body.lensColor;
+            product.frameColor = req.body.frameColor;
+            product.lensProtection = req.body.lensProtection;
+            const updatedProduct = await product.save();
+            res.send({ message: 'Product Updated', product: updatedProduct });
+        } else {
+            res.status(404).send({ message: 'Product Not Found' });
+        }
+    })
+);
 export default productRouter;

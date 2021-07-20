@@ -1,25 +1,32 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
+import uploadRouter from './routers/uploadRouter.js';
 
 dotenv.config();
 
 const app = express();
 app.use(express.json()); // parse json data in the body of request
 app.use(express.urlencoded({ extended: true }));
-
+// connect to mongodb
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ouclos', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
 });
-
+// api routers used
+app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
+// return project folder
+const __dirname = path.resolve();
+// access upload folder in project folder
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.get('/', (req, res) => {
     res.send('Server is ready');
 });
