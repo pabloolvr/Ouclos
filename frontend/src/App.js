@@ -20,6 +20,7 @@ import RegisterScreen from './pages/RegisterPage';
 import ShippingPage from './pages/ShippingPage';
 import UpdateAddressPage from './pages/UpdateAddresPage';
 import OrderListPage from './pages/OrderListPage';
+import UserListPage from './pages/UserListPage';
 
 
 
@@ -117,6 +118,7 @@ function App() {
                     <PrivateRoute path="/address" component={UpdateAddressPage}></PrivateRoute>
                     <AdminRoute path="/productlist" component={ProductListPage}></AdminRoute>
                     <AdminRoute path="/orderlist" component={OrderListPage}></AdminRoute>
+                    <AdminRoute path="/userlist" component={UserListPage}></AdminRoute>
                 </main>
                 <footer className="row center">
                     All rights reserved

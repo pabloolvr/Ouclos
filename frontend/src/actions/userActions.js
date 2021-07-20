@@ -13,6 +13,9 @@ import {
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
+    USER_LIST_REQUEST,
+    USER_LIST_SUCCESS,
+    USER_LIST_FAIL,
 } from '../constants/userConstants';
 
 // when user register
@@ -73,6 +76,8 @@ export const logout = () => (dispatch) => {
     localStorage.removeItem('shippingAddress');
     localStorage.removeItem('paymentMethod')
     dispatch({ type: USER_LOGOUT });
+    //
+    document.location.location.href = '/login';
 };
 // get user details by id
 export const detailsUser = (userId) => async (dispatch, getState) => {
@@ -97,7 +102,8 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: USER_UPDATE_PROFILE_REQUEST, payload: user });
     const { userLogin: { userInfo }, } = getState();
     try {
-        const { data } = await Axios.put(`/api/users/profile`, user, {
+        const { data } = await Axios.put(`/api/users/profile`, user, 
+        {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
@@ -109,5 +115,26 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
                 ? error.response.data.message
                 : error.message;
         dispatch({ type: USER_UPDATE_PROFILE_FAIL, payload: message });
+    }
+};
+// get all users
+export const listUsers = () => async (dispatch, getState) => {
+    dispatch({ type: USER_LIST_REQUEST });
+    try {
+        const {
+            userLogin: { userInfo },
+        } = getState();
+        const { data } = await Axios.get('/api/users', {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        });
+        dispatch({ type: USER_LIST_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: USER_LIST_FAIL, payload: message });
     }
 };

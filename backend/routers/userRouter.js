@@ -3,11 +3,11 @@ import expressAsyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
 import data from '../data.js';
 import User from '../models/userModel.js';
-import { generateToken, isAuth } from '../utils.js';
+import { generateToken, isAdmin, isAuth } from '../utils.js';
 
 const userRouter = express.Router();
 
-// get data of all users
+// insert pre-defined data in backend db
 userRouter.get('/seed', expressAsyncHandler(async (req, res) => {
         await User.deleteMany({}); // remove all users from database
         const createdUsers = await User.insertMany(data.users); // insert pre-defined admin into database
@@ -131,6 +131,12 @@ userRouter.put('/profile', isAuth, expressAsyncHandler(async (req, res) => {
                 token: generateToken(updatedUser),
             });
         }
+    })
+);
+// get data of all users
+userRouter.get('/', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+        const users = await User.find({});
+        res.send(users);
     })
 );
 
