@@ -24,7 +24,7 @@ export default function OrderListPage(props) {
     }, [dispatch, successDelete]);
 
     const deleteHandler = (order) => {
-        if (window.confirm('Are you sure to delete?')) {
+        if (window.confirm('Tem certeza que quer remover este pedido?')) {
             dispatch(deleteOrder(order._id));
         }
     };

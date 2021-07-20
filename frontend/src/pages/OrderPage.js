@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getOrderDetails, payOrder } from '../actions/orderActions';
+import { deliverOrder, getOrderDetails, payOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { ORDER_PAY_RESET } from '../constants/orderConstants';
+import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants';
 
 export default function OrderPage(props) {
     const orderId = props.match.params.id;
-
+    // get order details from redux store
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;
-
+    // get userInfo from logged in user on redux store
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+    // get orderPay from redux store
     const orderPay = useSelector((state) => state.orderPay);
     const {
         loading: loadingPay,
@@ -19,19 +22,29 @@ export default function OrderPage(props) {
         success: successPay,
     } = orderPay;
 
+    const orderDeliver = useSelector((state) => state.orderDeliver);
+    const {
+        loading: loadingDeliver,
+        error: errorDeliver,
+        success: successDeliver,
+    } = orderDeliver;
+
     const dispatch = useDispatch();
     useEffect(() => {
         // reload the page if the order has just been paid or the order in the variable 'order' is not the same as the one being shown in the page
-        if (!order || successPay || (order && order._id !== orderId)) {
+        if (!order || successPay || successDeliver || (order && order._id !== orderId)) {
             dispatch({ type: ORDER_PAY_RESET });
-            console.log('chamou getOrderDetails');
+            dispatch({ type: ORDER_DELIVER_RESET });
             dispatch(getOrderDetails(orderId));
         }
-    }, [dispatch, order, orderId, successPay]);
+    }, [dispatch, order, orderId, successPay, successDeliver]);
 
     const successPaymentHandler = () => {
         console.log('chamou payOrder');
         dispatch(payOrder(order));
+    };
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order._id));
     };
 
     return loading ? (
@@ -147,12 +160,6 @@ export default function OrderPage(props) {
                                             <MessageBox variant="danger">{errorPay}</MessageBox>
                                         )}
                                         {loadingPay && <LoadingBox></LoadingBox>}
-{/*
-                                        <PayPalButton
-                                            amount={order.totalPrice}
-                                            onSuccess={successPaymentHandler}
-                                        ></PayPalButton>
-*/}
                                         <button
                                             type="button"
                                             onClick={successPaymentHandler}
@@ -161,6 +168,21 @@ export default function OrderPage(props) {
                                             pagar pedido
                                         </button>
                                     </>
+                                </li>
+                            )}
+                            {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                                <li>
+                                    {loadingDeliver && <LoadingBox></LoadingBox>}
+                                    {errorDeliver && (
+                                        <MessageBox variant="danger">{errorDeliver}</MessageBox>
+                                    )}
+                                    <button
+                                        type="button"
+                                        className="primary block"
+                                        onClick={deliverHandler}
+                                    >
+                                        Confirmar Entrega
+                                    </button>
                                 </li>
                             )}
                         </ul>

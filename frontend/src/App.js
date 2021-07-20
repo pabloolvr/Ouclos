@@ -84,10 +84,10 @@ function App() {
                                         <Link to="/productlist">Produtos</Link>
                                     </li>
                                     <li>
-                                        <Link to="/orderlist">Orders</Link>
+                                        <Link to="/orderlist">Pedidos</Link>
                                     </li>
                                     <li>
-                                        <Link to="/userlist">Users</Link>
+                                        <Link to="/userlist">Usuários</Link>
                                     </li>
                                 </ul>
                             </div>
