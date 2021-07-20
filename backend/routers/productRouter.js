@@ -13,7 +13,8 @@ productRouter.get('/', expressAsyncHandler(async (req, res) => {
 );
 // get all products from data.js
 productRouter.get('/seed', expressAsyncHandler(async (req, res) => {
-        // await Product.remove({});
+        console.log('insert');
+        await Product.deleteMany({});
         const createdProducts = await Product.insertMany(data.products);
         res.send({ createdProducts });
     })
@@ -31,12 +32,13 @@ productRouter.get('/:id', expressAsyncHandler(async (req, res) => {
 
 productRouter.post('/', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
         const product = new Product({
-            name: 'samle name ' + Date.now(),
+            name: 'sample name ' + Date.now(),
             image: '/images/p1.png',
             quantity: 0,
             rating: 0,
             numReviews: 0,
             price: 0,
+            category: 'category sample',
             gender: 'gender sample',
             lensMaterial: 'lens material sample',
             frameMaterial: 'frame material sample',

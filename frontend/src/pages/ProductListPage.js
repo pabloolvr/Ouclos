@@ -55,7 +55,7 @@ export default function ProductListPage(props) {
                             <th>Nome</th>
                             <th>Preço</th>
                             <th>Estoque</th>
-                            <th>Estilo</th>
+                            <th>Categoria</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -66,7 +66,7 @@ export default function ProductListPage(props) {
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
                                 <td>{product.quantity}</td>
-                                <td>{product.style}</td>
+                                <td>{product.category}</td>
                                 <td>
                                     <button
                                         type="button"

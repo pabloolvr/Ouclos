@@ -11,6 +11,7 @@ import OrderHistoryPage from './pages/OrderHistoryPage';
 import OrderPage from './pages/OrderPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
+import ProductEditPage from './pages/ProductEditPage';
 import ProductListPage from './pages/ProductListPage';
 import ProductPage from './pages/ProductPage';
 import UpdateProfilePage from './pages/UpdateProfilePage';
@@ -101,7 +102,8 @@ function App() {
                     <Route path="/login" component={LoginPage}></Route>
                     <Route path="/register" component={RegisterScreen}></Route>
                     <Route path="/cart/:id?" component={CartPage}></Route>
-                    <Route path="/product/:id" component={ProductPage}></Route>
+                    <Route exact path="/product/:id" component={ProductPage}></Route>
+                    <AdminRoute exact path="/product/:id/edit" component={ProductEditPage}></AdminRoute>
                     <Route path="/shipping" component={ShippingPage}></Route>
                     <Route path="/payment" component={PaymentPage}></Route>
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>

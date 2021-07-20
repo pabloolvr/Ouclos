@@ -45,6 +45,7 @@ const data = {
             numReviews: 10,
             //product especifications used in filter
             price: 129.99,
+            category: 'Óculos de Sol',
             gender: 'masculino',
             lensMaterial: 'policarbonato',
             frameMaterial: 'aço',
@@ -64,6 +65,7 @@ const data = {
             numReviews: 49,
             //product especifications used in filter
             price: 249.99,
+            category: 'Óculos de Sol',
             gender: 'masculino',
             lensMaterial: 'policarbonato',
             frameMaterial: 'aço',
@@ -83,6 +85,7 @@ const data = {
             numReviews: 254,
             //product especifications used in filter
             price: 359.99,
+            category: 'Óculos de Grau',
             gender: 'feminino',
             lensMaterial: '',
             frameMaterial: 'aço',
