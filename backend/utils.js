@@ -14,7 +14,7 @@ export const generateToken = (user) => {
         }
     );
 };
-
+// verify user authentication
 export const isAuth = (req, res, next) => {
     const authorization = req.headers.authorization;
     //console.log('authorization: ' + authorization);
@@ -34,5 +34,13 @@ export const isAuth = (req, res, next) => {
         );
     } else {
         res.status(401).send({ message: 'No Token'});
+    }
+};
+// verify admin authentication
+export const isAdmin = (req, res, next) => {
+    if (req.user && req.user.isAdmin) {
+        next();
+    } else {
+        res.status(401).send({ message: 'Invalid Admin Token' });
     }
 };
