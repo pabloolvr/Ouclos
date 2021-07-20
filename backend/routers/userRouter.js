@@ -102,6 +102,12 @@ userRouter.put('/profile', isAuth, expressAsyncHandler(async (req, res) => {
             user.phone = req.body.phone || user.phone;
             user.email = req.body.email || user.email;
             // update address
+            user.publicPlace = req.body.publicPlace || user.publicPlace;
+            user.publicPlaceNumber = req.body.publicPlaceNumber || user.publicPlaceNumber;
+            user.neighborhood = req.body.neighborhood || user.neighborhood;
+            user.city = req.body.city || user.city;
+            user.state = req.body.state || user.state;
+            user.postalCode = req.body.postalCode || user.postalCode;
             // update password if user has changed it on update page
             if (req.body.password) {
                 user.password = bcrypt.hashSync(req.body.password, 8);
@@ -115,6 +121,12 @@ userRouter.put('/profile', isAuth, expressAsyncHandler(async (req, res) => {
                 birthdate: updatedUser.birthdate,
                 phone: updatedUser.phone,
                 email: updatedUser.email,
+                publicPlace: updatedUser.publicPlace,
+                publicPlaceNumber: updatedUser.publicPlaceNumber,
+                neighborhood: updatedUser.neighborhood,
+                city: updatedUser.city,
+                state: updatedUser.state,
+                postalCode: updatedUser.postalCode,
                 isAdmin: updatedUser.isAdmin,
                 token: generateToken(updatedUser),
             });

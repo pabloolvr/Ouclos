@@ -11,9 +11,10 @@ import OrderPage from './pages/OrderPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProductPage from './pages/ProductPage';
-import ProfilePage from './pages/ProfilePage';
+import UpdateProfilePage from './pages/UpdateProfilePage';
 import RegisterScreen from './pages/RegisterPage';
 import ShippingPage from './pages/ShippingPage';
+import UpdateAddressPage from './pages/UpdateAddresPage';
 
 function App() {
     // get cartItems from redux
@@ -51,6 +52,9 @@ function App() {
                                         <Link to="/orderhistory">Pedidos</Link>
                                     </li>
                                     <li>
+                                        <Link to="/address">Endereço</Link>
+                                    </li>
+                                    <li>
                                         <Link to="/login" onClick={logoutHandler}>
                                             Sair
                                         </Link>
@@ -79,7 +83,8 @@ function App() {
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>
                     <Route path="/order/:id" component={OrderPage}></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
-                    <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
+                    <PrivateRoute path="/profile" component={UpdateProfilePage}></PrivateRoute>
+                    <PrivateRoute path="/address" component={UpdateAddressPage}></PrivateRoute>
                 </main>
                 <footer className="row center">
                     All rights reserved

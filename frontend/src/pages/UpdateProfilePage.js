@@ -5,7 +5,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
-export default function ProfilePage() {
+export default function UpdateProfilePage() {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [cpf, setCPF] = useState('');
