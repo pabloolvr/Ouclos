@@ -9,7 +9,7 @@ const userRouter = express.Router();
 
 // insert pre-defined data in backend db
 userRouter.get('/seed', expressAsyncHandler(async (req, res) => {
-        await User.deleteMany({}); // remove all users from database
+        //await User.deleteMany({}); // remove all users from database
         const createdUsers = await User.insertMany(data.users); // insert pre-defined admin into database
         res.send({ createdUsers });
     })
@@ -137,6 +137,33 @@ userRouter.put('/profile', isAuth, expressAsyncHandler(async (req, res) => {
 userRouter.get('/', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
         const users = await User.find({});
         res.send(users);
+    })
+);
+// delete user by id
+userRouter.delete('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            if (user.email === 'admin@example.com') {
+                res.status(400).send({ message: 'Não é possível remover este admin' });
+                return;
+            }
+            const deleteUser = await user.remove();
+            res.send({ message: 'User Deleted', user: deleteUser });
+        } else {
+            res.status(404).send({ message: 'User Not Found' });
+        }
+    })
+);
+// edit an user by id
+userRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            user.isAdmin = req.body.isAdmin === user.isAdmin ? user.isAdmin : req.body.isAdmin;
+            const updatedUser = await user.save();
+            res.send({ message: 'User Updated', user: updatedUser });
+        } else {
+            res.status(404).send({ message: 'User Not Found' });
+        }
     })
 );
 

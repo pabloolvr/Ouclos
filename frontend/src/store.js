@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducer';
 import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderParticularListReducer, orderPayReducer } from './reducers/orderReducer';
 import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productUpdateReducer } from './reducers/productReducers';
-import { userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from './reducers/userReducer';
+import { userDeleteReducer, userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer } from './reducers/userReducer';
 
 const initialState = {
     // get user info from localStorage
@@ -32,7 +32,9 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
+    userUpdate: userUpdateReducer,
     userList: userListReducer,
+    userDelete: userDeleteReducer,
     productList: productListReducer,
     productDetails: productDetailsReducer,
     productCreate: productCreateReducer,

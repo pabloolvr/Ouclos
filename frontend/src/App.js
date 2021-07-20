@@ -21,6 +21,7 @@ import ShippingPage from './pages/ShippingPage';
 import UpdateAddressPage from './pages/UpdateAddresPage';
 import OrderListPage from './pages/OrderListPage';
 import UserListPage from './pages/UserListPage';
+import UserEditionPage from './pages/UserEditionPage';
 
 
 
@@ -119,6 +120,7 @@ function App() {
                     <AdminRoute path="/productlist" component={ProductListPage}></AdminRoute>
                     <AdminRoute path="/orderlist" component={OrderListPage}></AdminRoute>
                     <AdminRoute path="/userlist" component={UserListPage}></AdminRoute>
+                    <AdminRoute path="/user/:id/edit" component={UserEditionPage}></AdminRoute>
                 </main>
                 <footer className="row center">
                     All rights reserved
