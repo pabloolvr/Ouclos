@@ -15,6 +15,9 @@ import {
     PRODUCT_LIST_FAIL, 
     PRODUCT_LIST_REQUEST, 
     PRODUCT_LIST_SUCCESS, 
+    PRODUCT_REVIEW_CREATE_FAIL, 
+    PRODUCT_REVIEW_CREATE_REQUEST, 
+    PRODUCT_REVIEW_CREATE_SUCCESS, 
     PRODUCT_UPDATE_FAIL, 
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS
@@ -99,9 +102,10 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         userLogin: { userInfo },
     } = getState();
     try {
-        const { data } = await Axios.put(`/api/products/${product._id}`, product, {
-            headers: { Authorization: `Bearer ${userInfo.token}` },
-        });
+        const { data } = await Axios.put(`/api/products/${product._id}`, product, 
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` },
+            });
         dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
     } catch (error) {
         const message =
@@ -118,9 +122,10 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
         userLogin: { userInfo },
     } = getState();
     try {
-        const { data } = Axios.delete(`/api/products/${productId}`, {
-            headers: { Authorization: `Bearer ${userInfo.token}` },
-        });
+        const { data } = Axios.delete(`/api/products/${productId}`, 
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` },
+            });
         dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data });
     } catch (error) {
         const message =
@@ -128,5 +133,28 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
                 ? error.response.data.message
                 : error.message;
         dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
+    }
+};
+// use api to create a review for a product
+export const createReview = (productId, review) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_REVIEW_CREATE_REQUEST });
+    const {
+        userLogin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await Axios.post(`/api/products/${productId}/reviews`, review,
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` },
+            });
+        dispatch({
+            type: PRODUCT_REVIEW_CREATE_SUCCESS,
+            payload: data.review,
+        });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: PRODUCT_REVIEW_CREATE_FAIL, payload: message });
     }
 };

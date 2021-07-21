@@ -67,16 +67,16 @@ export default function SearchPage(props) {
                             props.history.push(getFilterUrl({ order: e.target.value }));
                         }}
                     >
-                        <option value="newest">Newest Arrivals</option>
-                        <option value="lowest">Price: Low to High</option>
-                        <option value="highest">Price: High to Low</option>
-                        <option value="toprated">Avg. Customer Reviews</option>
+                        <option value="newest">Recém chegados</option>
+                        <option value="lowest">Preço: Menor para Maior</option>
+                        <option value="highest">Preço: Maior para Menor</option>
+                        <option value="toprated">Avaliação média dos clientes</option>
                     </select>
                 </div>
             </div>
             <div className="row top">
                 <div className="col-1">
-                    <h3>Department</h3>
+                    <h3>Departamento</h3>
                     <div>
                         {loadingCategories ? (
                             <LoadingBox></LoadingBox>
@@ -106,7 +106,7 @@ export default function SearchPage(props) {
                         )}
                     </div>
                     <div>
-                        <h3>Price</h3>
+                        <h3>Preço</h3>
                         <ul>
                             {prices.map((p) => (
                                 <li key={p.name}>
@@ -123,7 +123,7 @@ export default function SearchPage(props) {
                         </ul>
                     </div>
                     <div>
-                        <h3>Avg. Customer Review</h3>
+                        <h3>Avaliação média dos clientes</h3>
                         <ul>
                             {ratings.map((r) => (
                                 <li key={r.name}>
