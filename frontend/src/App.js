@@ -177,6 +177,11 @@ function App() {
                     <Route path="/order/:id" component={OrderPage} exact></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
                     <Route path="/search/name/:name?" component={SearchPage}></Route>
+                    <Route
+                        path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order"
+                        component={SearchPage}
+                        exact
+                    ></Route>
                     <PrivateRoute path="/profile" component={UpdateProfilePage}></PrivateRoute>
                     <PrivateRoute path="/address" component={UpdateAddressPage}></PrivateRoute>
                     <AdminRoute path="/productlist" component={ProductListPage}></AdminRoute>

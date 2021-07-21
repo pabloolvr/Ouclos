@@ -1,3 +1,4 @@
+
 html {
   font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
   box-sizing: border-box;
@@ -120,8 +121,14 @@ a.brand {
 .col-2 {
     flex: 2 1 50rem;
 }
+.col-3 {
+    flex: 32 1 75rem;
+}
 .min-30 {
   min-width: 30rem;
+}
+.p-1 {
+  padding: 1rem;
 }
 /* Aside */
 aside {
@@ -319,4 +326,7 @@ img.large {
   border-right: none;
   margin-left: 0.5rem;
   width: 50rem;
+}
+.active {
+  font-weight: bold;
 }
