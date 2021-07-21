@@ -69,15 +69,17 @@ input,
 select, 
 textarea, 
 button {
-    padding: 1rem;
+    padding: 0.7rem;
     border-radius: 0.5rem;
     border: 0.1rem #a4a4a4 solid;
     font-size: 1.6rem;
     font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f8f8f8;
-    cursor: pointer;
+}
+button {
+  background-color: #f8f8f8;
+  cursor: pointer;
 }
 input:hover, select:hover, textarea:hover, button:hover {
   border: 0.1rem #404040 solid;
@@ -281,5 +283,4 @@ img.large {
   border-radius: 0.5rem 0 0 0.5rem;
   border-right: none;
   margin-left: 0.5rem;
-  width: 50rem;
 }
