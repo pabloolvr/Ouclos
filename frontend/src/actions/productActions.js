@@ -1,5 +1,8 @@
 import Axios from "axios";
 import { 
+    PRODUCT_CATEGORY_LIST_FAIL,
+    PRODUCT_CATEGORY_LIST_REQUEST,
+    PRODUCT_CATEGORY_LIST_SUCCESS,
     PRODUCT_CREATE_FAIL,
     PRODUCT_CREATE_REQUEST,
     PRODUCT_CREATE_SUCCESS,
@@ -18,15 +21,27 @@ import {
 } from "../constants/productConstants";
 
 // use api to get list of products
-export const listProducts = () => async (dispatch) => {
+export const listProducts = ({ name = '', category = '' }) => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST
     });
     try {
-        const { data } = await Axios.get('/api/products'); // get data from backend
+        const { data } = await Axios.get(`/api/products?name=${name}&category=${category}`); // get data from backend
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch(e) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: e.message })
+    }
+};
+// use api to get list of products by categories
+export const listProductCategories = () => async (dispatch) => {
+    dispatch({
+        type: PRODUCT_CATEGORY_LIST_REQUEST,
+    });
+    try {
+        const { data } = await Axios.get(`/api/products/categories`);
+        dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
     }
 };
 // use api to get details from a product 

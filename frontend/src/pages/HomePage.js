@@ -12,7 +12,7 @@ export default function HomePage() {
     const { loading, error, products} = productList;
 
     useEffect(() => {
-        dispatch(listProducts());
+        dispatch(listProducts({ name: ''}));
     }, [dispatch])
     return (
         <div>
