@@ -22,6 +22,8 @@ import UpdateAddressPage from './pages/UpdateAddresPage';
 import OrderListPage from './pages/OrderListPage';
 import UserListPage from './pages/UserListPage';
 import UserEditionPage from './pages/UserEditionPage';
+import SearchPage from './pages/SearchPage';
+import SearchBox from './components/SearchBox';
 
 
 
@@ -46,6 +48,13 @@ function App() {
                         <Link className="brand" to="/">
                             ouclos óculos
                         </Link>
+                    </div>
+                    <div>
+                        <Route
+                            render={({ history }) => (
+                                <SearchBox history={history}></SearchBox>
+                            )}
+                        ></Route>
                     </div>
                     <div>
                         {userInfo ? (
@@ -115,6 +124,7 @@ function App() {
                     <Route path="/placeorder" component={PlaceOrderPage}></Route>
                     <Route path="/order/:id" component={OrderPage} exact></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
+                    <Route path="/search/name/:name?" component={SearchPage}></Route>
                     <PrivateRoute path="/profile" component={UpdateProfilePage}></PrivateRoute>
                     <PrivateRoute path="/address" component={UpdateAddressPage}></PrivateRoute>
                     <AdminRoute path="/productlist" component={ProductListPage}></AdminRoute>

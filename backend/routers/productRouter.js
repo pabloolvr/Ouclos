@@ -7,7 +7,11 @@ import { isAdmin, isAuth } from '../utils.js';
 const productRouter = express.Router(); // defines api routers for products
 // get all data from database
 productRouter.get('/', expressAsyncHandler(async (req, res) => {
-        const products = await Product.find({});
+        const name = req.query.name || '';
+        const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+        const products = await Product.find({
+            ...nameFilter,
+        });
         res.send(products);
     })
 );
