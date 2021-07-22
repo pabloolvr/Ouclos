@@ -24,9 +24,6 @@ import UserListPage from './pages/UserListPage';
 import UserEditionPage from './pages/UserEditionPage';
 import SearchPage from './pages/SearchPage';
 import SearchBox from './components/SearchBox';
-import { listProductCategories } from './actions/productActions';
-
-
 
 function App() {
     // get cartItems from redux
@@ -43,7 +40,7 @@ function App() {
     };
 
     useEffect(() => {
-        dispatch(listProductCategories());
+
     }, [dispatch]);
     return (
         <BrowserRouter>
@@ -138,8 +135,9 @@ function App() {
                     <Route path="/order/:id" component={OrderPage} exact></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
                     <Route path="/search/name/:name?" component={SearchPage}></Route>
+                    {/*path="/search/category/:category/name/:name/gender/:gender/lens-material/:lens-material/style/:style/frameColor/:frameColor/lensColor/:lensColor/min/:min/max/:max/rating/:rating/order/:order"*/}
                     <Route
-                        path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order"
+                        path="/search/category/:category/name/:name/gender/:gender/lensMaterial/:lensMaterial/style/:style/frameColor/:frameColor/lensColor/:lensColor/min/:min/max/:max/rating/:rating/order/:order"
                         component={SearchPage}
                         exact
                     ></Route>

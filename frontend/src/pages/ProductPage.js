@@ -77,7 +77,7 @@ export default function ProductPage(props) {
                                     <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
                                 </li>
                                 <li>
-                                    <strong>R$ {product.price}</strong>
+                                    <strong>R$ {product.price.toFixed(2)}</strong>
                                 </li>
                                 <li>
                                     <div className="row">

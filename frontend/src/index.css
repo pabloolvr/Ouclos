@@ -209,6 +209,19 @@ img.large {
     background-color: #f8f8f8;
     border-radius: 0.5rem;
     margin: 1rem;
+    width: 30rem;
+    height: 45rem;
+}
+.card-image {
+    height: 30rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    position: relative;
+}
+.card-image img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .card-body {
     padding: 1rem;

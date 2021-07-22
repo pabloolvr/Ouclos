@@ -3,7 +3,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducer';
 import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderParticularListReducer, orderPayReducer } from './reducers/orderReducer';
-import { productCategoryListReducer, productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productReviewCreateReducer, productUpdateReducer } from './reducers/productReducers';
+import { productStyleListReducer, productCreateReducer, productDeleteReducer, productDetailsReducer, productGenderListReducer, productListReducer, productReviewCreateReducer, productUpdateReducer, productCategoryListReducer, productLensMaterialListReducer, productFrameColorListReducer, productLensColorListReducer } from './reducers/productReducers';
 import { userDeleteReducer, userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer } from './reducers/userReducer';
 
 const initialState = {
@@ -37,6 +37,11 @@ const reducer = combineReducers({
     userDelete: userDeleteReducer,
     productList: productListReducer,
     productCategoryList: productCategoryListReducer,
+    productGenderList: productGenderListReducer,
+    productStyleList: productStyleListReducer,
+    productLensMaterialList: productLensMaterialListReducer,
+    productFrameColorList: productFrameColorListReducer,
+    productLensColorList: productLensColorListReducer,
     productDetails: productDetailsReducer,
     productCreate: productCreateReducer,
     productUpdate: productUpdateReducer,

@@ -17,13 +17,28 @@ const {
     PRODUCT_DELETE_SUCCESS,
     PRODUCT_DELETE_FAIL,
     PRODUCT_DELETE_RESET,
-    PRODUCT_CATEGORY_LIST_REQUEST,
-    PRODUCT_CATEGORY_LIST_SUCCESS,
-    PRODUCT_CATEGORY_LIST_FAIL,
+    PRODUCT_GENDER_LIST_REQUEST,
+    PRODUCT_GENDER_LIST_SUCCESS,
+    PRODUCT_GENDER_LIST_FAIL,
     PRODUCT_REVIEW_CREATE_RESET,
     PRODUCT_REVIEW_CREATE_FAIL,
     PRODUCT_REVIEW_CREATE_SUCCESS,
     PRODUCT_REVIEW_CREATE_REQUEST,
+    PRODUCT_STYLE_LIST_REQUEST,
+    PRODUCT_STYLE_LIST_SUCCESS,
+    PRODUCT_STYLE_LIST_FAIL,
+    PRODUCT_LENS_MATERIAL_LIST_REQUEST,
+    PRODUCT_LENS_MATERIAL_LIST_SUCCESS,
+    PRODUCT_LENS_MATERIAL_LIST_FAIL,
+    PRODUCT_FRAME_COLOR_LIST_REQUEST,
+    PRODUCT_FRAME_COLOR_LIST_SUCCESS,
+    PRODUCT_FRAME_COLOR_LIST_FAIL,
+    PRODUCT_LENS_COLOR_LIST_REQUEST,
+    PRODUCT_LENS_COLOR_LIST_SUCCESS,
+    PRODUCT_LENS_COLOR_LIST_FAIL,
+    PRODUCT_CATEGORY_LIST_REQUEST,
+    PRODUCT_CATEGORY_LIST_SUCCESS,
+    PRODUCT_CATEGORY_LIST_FAIL,
 } = require('../constants/productConstants');
 
 export const productListReducer = (state = { loading: true, products: [] }, action) => {
@@ -51,6 +66,72 @@ export const productCategoryListReducer = (state = { loading: true, products: []
             return state;
     }
 };
+
+export const productGenderListReducer = (state = { loading: true, products: [] }, action) => {
+    switch (action.type) {
+        case PRODUCT_GENDER_LIST_REQUEST:
+            return { loading: true };
+        case PRODUCT_GENDER_LIST_SUCCESS:
+            return { loading: false, genders: action.payload };
+        case PRODUCT_GENDER_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const productStyleListReducer = (state = { loading: true, products: [] }, action) => {
+    switch (action.type) {
+        case PRODUCT_STYLE_LIST_REQUEST:
+            return { loading: true };
+        case PRODUCT_STYLE_LIST_SUCCESS:
+            return { loading: false, styles: action.payload };
+        case PRODUCT_STYLE_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const productLensMaterialListReducer = (state = { loading: true, products: [] }, action) => {
+    switch (action.type) {
+        case PRODUCT_LENS_MATERIAL_LIST_REQUEST:
+            return { loading: true };
+        case PRODUCT_LENS_MATERIAL_LIST_SUCCESS:
+            return { loading: false, lensMaterials: action.payload };
+        case PRODUCT_LENS_MATERIAL_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const productFrameColorListReducer = (state = { loading: true, products: [] }, action) => {
+    switch (action.type) {
+        case PRODUCT_FRAME_COLOR_LIST_REQUEST:
+            return { loading: true };
+        case PRODUCT_FRAME_COLOR_LIST_SUCCESS:
+            return { loading: false, frameColors: action.payload };
+        case PRODUCT_FRAME_COLOR_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const productLensColorListReducer = (state = { loading: true, products: [] }, action) => {
+    switch (action.type) {
+        case PRODUCT_LENS_COLOR_LIST_REQUEST:
+            return { loading: true };
+        case PRODUCT_LENS_COLOR_LIST_SUCCESS:
+            return { loading: false, lensColors: action.payload };
+        case PRODUCT_LENS_COLOR_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
 export const productDetailsReducer = (state = { loading: true }, action) => {
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:
