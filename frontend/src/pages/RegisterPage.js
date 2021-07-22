@@ -47,18 +47,6 @@ export default function RegisterScreen(props) {
             <form className="form" onSubmit={submitHandler}>
                 {loading && <LoadingBox></LoadingBox>}
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
-                
-                <div className="registerContainer">
-                    <div>
-                        <h1>Criar Conta</h1>
-                    </div>
-                    <div className="registerBox left">
-                        AAAA
-                    </div>
-                    <div className="registerBox right">
-                        BBBB
-                    </div>
-                </div>
                 <div>
                     <h1>Dados Pessoais</h1>
                 </div>

@@ -4,6 +4,7 @@ import { savePaymentMethod } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 export default function PaymentPage(props) {
+    // get shipping address from redux store
     const cart = useSelector((state) => state.cart);
     const { shippingAddress } = cart;
     if (!shippingAddress.fullName) {

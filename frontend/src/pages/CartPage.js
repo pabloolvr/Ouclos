@@ -27,7 +27,7 @@ export default function CartPage(props) {
     return (
         <div className="row top">
             <div className="col-2">
-                <h1>Shopping Cart</h1>
+                <h1>Sacola</h1>
                 {cartItems.length === 0 ? (
                     <MessageBox>
                         Sua Sacola está vazia. <Link to="/">Escolher produtos</Link>
@@ -90,6 +90,10 @@ export default function CartPage(props) {
                         </li>
                     </ul>
                 </div>
+                <div className="return">
+                    <Link to="/">continuar comprando</Link>
+                </div>
+                
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
@@ -49,6 +49,16 @@ export default function SearchPage(props) {
         const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
         return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}`;
     };
+    //
+    const [isPriceBoxOpened, setIsPriceBoxOpened] = useState(false);
+    const togglePriceBox = () => {
+        setIsPriceBoxOpened(!isPriceBoxOpened);
+    }
+    //
+    const [isRatingBoxOpened, setIsRatingBoxOpened] = useState(false);
+    const toggleRatingBox = () => {
+        setIsRatingBoxOpened(!isRatingBoxOpened);
+    }
     return (
         <div>
             <div className="row">
@@ -57,7 +67,7 @@ export default function SearchPage(props) {
                 ) : error ? (
                     <MessageBox variant="danger">{error}</MessageBox>
                 ) : (
-                    <div>{products.length} Resultados</div>
+                    <div>{products.length} Produtos encontrados</div>
                 )}
                 <div>
                     Ordenar por{' '}
@@ -67,10 +77,10 @@ export default function SearchPage(props) {
                             props.history.push(getFilterUrl({ order: e.target.value }));
                         }}
                     >
-                        <option value="newest">Recém chegados</option>
-                        <option value="lowest">Preço: Menor para Maior</option>
-                        <option value="highest">Preço: Maior para Menor</option>
-                        <option value="toprated">Avaliação média dos clientes</option>
+                        <option value="newest">Data de Lançamento</option>
+                        <option value="lowest">Menor Preço</option>
+                        <option value="highest">Maior Preço</option>
+                        <option value="toprated">Melhor Avaliado</option>
                     </select>
                 </div>
             </div>
@@ -89,7 +99,7 @@ export default function SearchPage(props) {
                                         className={'all' === category ? 'active' : ''}
                                         to={getFilterUrl({ category: 'all' })}
                                     >
-                                        Any
+                                        Todos
                                     </Link>
                                 </li>
                                 {categories.map((c) => (
@@ -106,36 +116,52 @@ export default function SearchPage(props) {
                         )}
                     </div>
                     <div>
-                        <h3>Preço</h3>
-                        <ul>
-                            {prices.map((p) => (
-                                <li key={p.name}>
-                                    <Link
-                                        to={getFilterUrl({ min: p.min, max: p.max })}
-                                        className={
-                                            `${p.min}-${p.max}` === `${min}-${max}` ? 'active' : ''
-                                        }
-                                    >
-                                        {p.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="filter-box">
+                            <div className="filter-name" onClick={togglePriceBox}>
+                                <h3>Por Preço</h3>
+                            </div>
+                                {isPriceBoxOpened && (
+                                    <div className="filter-content">
+                                        <ul>
+                                            {prices.map((p) => (
+                                                <li key={p.name}>
+                                                    <Link
+                                                        to={getFilterUrl({ min: p.min, max: p.max })}
+                                                        className={
+                                                            `${p.min}-${p.max}` === `${min}-${max}` ? 'active' : ''
+                                                        }
+                                                    >
+                                                        {p.name}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                        </div>
                     </div>
                     <div>
-                        <h3>Avaliação média dos clientes</h3>
-                        <ul>
-                            {ratings.map((r) => (
-                                <li key={r.name}>
-                                    <Link
-                                        to={getFilterUrl({ rating: r.rating })}
-                                        className={`${r.rating}` === `${rating}` ? 'active' : ''}
-                                    >
-                                        <Rating caption={' & up'} rating={r.rating}></Rating>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="filter-box">
+                            <div className="filter-name" onClick={toggleRatingBox}>
+                                <h3>Por Avaliação</h3>
+                            </div>
+                            {isRatingBoxOpened && (
+                                <div className="filter-content">
+                                    <ul>
+                                        {ratings.map((r) => (
+                                            <li key={r.name}>
+                                                <Link
+                                                    to={getFilterUrl({ rating: r.rating })}
+                                                    className={`${r.rating}` === `${rating}` ? 'active' : ''}
+                                                >
+                                                    <Rating caption={' ou mais'} rating={r.rating}></Rating>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className="col-3">
@@ -146,7 +172,7 @@ export default function SearchPage(props) {
                     ) : (
                         <>
                             {products.length === 0 && (
-                                <MessageBox>Nenhum produto encontrado com as dadas informações.</MessageBox>
+                                <MessageBox>Nenhum produto encontrado.</MessageBox>
                             )}
                             <div className="row center">
                                 {products.map((product) => (

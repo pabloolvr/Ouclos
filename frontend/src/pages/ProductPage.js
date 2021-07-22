@@ -63,23 +63,24 @@ export default function ProductPage(props) {
                 <div className="product-main">
                     <Link to="/">Voltar</Link>
                     <div className="row top">
-                        <div className="col-2">
-                            <img className="large" src={product.image} alt={product.name}></img>
+                        <div className="productImage">
+                            <div className="include">
+                                <img className="large right" src={product.image} alt={product.name}></img>
+                            </div>
                         </div>
-                        <div className="col-1">
+                        <div className="productInfo">
                             <ul>
                                 <li>
-                                    <h1>{product.name}</h1>
+                                    <strong> {product.name} </strong>
                                 </li>
                                 <li>
                                     <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
                                 </li>
                                 <li>
-                                    Preço : R$ {product.price}
+                                    <strong>R$ {product.price}</strong>
                                 </li>
                                 <li>
                                     <div className="row">
-                                        <div>Status</div>
                                         <div>
                                             {product.quantity > 0 ? (
                                                 <span className="success">Em estoque</span>
@@ -100,85 +101,133 @@ export default function ProductPage(props) {
                         </div>
                     </div>
                     <div className="specifications">
-                        Especificações do Produto
-                        <br></br>
-                        asdasdasdasdasd
-                        asdasdasdasdasddasasd
-                        asd
-                        asdasdasdasdasddasasdasda
-                        sd
-                        <br>
-                        </br>
-                        asdasdasdasdasddasasdasdasd
-                        asdasdasdasdasddasasdasdasda
-                        adsasdasdasd
+                        <div className="specifications_wrapper">
+                            <div className="specifications_left">
+                                <h1>Descrição do Produto</h1>
+                                {product.description}
+                            </div>
+                            <div className="specifications_right">
+                                <h1>Especificações do Produto</h1>
+                                <tbody>                            
+                                    {product.category !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Categoria</th>
+                                            <td className="fieldValue">{product.category}</td>
+                                        </tr>
+                                    )}
+                                    {product.style !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Estilo</th>
+                                            <td className="fieldValue">{product.style}</td>
+                                        </tr>
+                                    )}
+                                    {product.gender !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Gênero</th>
+                                            <td className="fieldValue">{product.gender}</td>
+                                        </tr>
+                                    )}
+                                    { product.lensMaterial !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Material da Lente</th>
+                                            <td className="fieldValue">{product.lensMaterial}</td>
+                                        </tr>
+                                    )}
+                                    {product.lensColor !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Cor da Lente</th>
+                                            <td className="fieldValue">{product.lensColor}</td>
+                                        </tr>
+                                    )}
+                                    {product.lensProtection !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Proteção da Lente</th>
+                                            <td className="fieldValue">{product.lensProtection}</td>
+                                        </tr>
+                                    )}
+                                    {product.frameMaterial !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Material da Armação</th>
+                                            <td className="fieldValue">{product.frameMaterial}</td>
+                                        </tr>
+                                    )}
+                                    {product.frameColor !== '' && (
+                                        <tr>
+                                            <th className="fieldName">Cor da Armação</th>
+                                            <td className="fieldValue">{product.frameColor}</td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="ratings">
+                        <h1 id="reviews">Avaliações do Produto</h1>
+                        {product.reviews.length === 0 ? (
+                            <MessageBox>Ainda não há nenhuma avaliação</MessageBox>
+                        ) : (
+                            <ul className="reviews">
+                                {product.reviews.map((review) => (
+                                    <li key={review._id}>
+                                        <strong>{review.name} - {review.createdAt.substring(0, 10)}</strong>
+                                        <Rating rating={review.rating} caption=" "></Rating>
+                                        <p>{review.comment}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                     <div>
-                        <h2 id="reviews">Avaliações</h2>
-                        {product.reviews.length === 0 && (
-                            <MessageBox>Ainda não há nenhuma avaliação</MessageBox>
+                        {userInfo ? (
+                            <form className="form" onSubmit={submitHandler}>
+                                <div>
+                                    <h2>Faça uma avaliação</h2>
+                                </div>
+                                <div>
+                                    <label htmlFor="rating">Nota</label>
+                                    <select
+                                        id="rating"
+                                        value={rating}
+                                        onChange={(e) => setRating(e.target.value)}
+                                    >
+                                        <option value="">Selecionar...</option>
+                                        <option value="0">0 - Horrível</option>
+                                        <option value="1">1 - Ruim</option>
+                                        <option value="2">2 - Regular</option>
+                                        <option value="3">3 - Bom</option>
+                                        <option value="4">4 - Muito Bom</option>
+                                        <option value="5">5 - Excelente</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="comment">Comentário</label>
+                                    <textarea
+                                        id="comment"
+                                        value={comment}
+                                        onChange={(e) => setComment(e.target.value)}
+                                    ></textarea>
+                                </div>
+                                <div>
+                                    <label />
+                                    <button className="primary" type="submit">
+                                        Enviar
+                                    </button>
+                                </div>
+                                <div>
+                                    {loadingReviewCreate && <LoadingBox></LoadingBox>}
+                                    {errorReviewCreate && (
+                                        <MessageBox variant="danger">
+                                            {errorReviewCreate}
+                                        </MessageBox>
+                                    )}
+                                </div>
+                            </form>
+                        ) : (
+                            <MessageBox>
+                                Por favor <Link to="/signin">faça Login</Link> para escrever uma avaliação
+                            </MessageBox>
                         )}
-                        <ul>
-                            {product.reviews.map((review) => (
-                                <li key={review._id}>
-                                    <strong>{review.name}</strong>
-                                    <Rating rating={review.rating} caption=" "></Rating>
-                                    <p>{review.createdAt.substring(0, 10)}</p>
-                                    <p>{review.comment}</p>
-                                </li>
-                            ))}
-                            <li>
-                                {userInfo ? (
-                                    <form className="form" onSubmit={submitHandler}>
-                                        <div>
-                                            <h2>Faça uma avaliação</h2>
-                                        </div>
-                                        <div>
-                                            <label htmlFor="rating">Nota</label>
-                                            <select
-                                                id="rating"
-                                                value={rating}
-                                                onChange={(e) => setRating(e.target.value)}
-                                            >
-                                                <option value="">Selecionar...</option>
-                                                <option value="1">1- Poor</option>
-                                                <option value="2">2- Fair</option>
-                                                <option value="3">3- Good</option>
-                                                <option value="4">4- Very good</option>
-                                                <option value="5">5- Excelent</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label htmlFor="comment">Comentário</label>
-                                            <textarea
-                                                id="comment"
-                                                value={comment}
-                                                onChange={(e) => setComment(e.target.value)}
-                                            ></textarea>
-                                        </div>
-                                        <div>
-                                            <label />
-                                            <button className="primary" type="submit">
-                                                Enviar
-                                            </button>
-                                        </div>
-                                        <div>
-                                            {loadingReviewCreate && <LoadingBox></LoadingBox>}
-                                            {errorReviewCreate && (
-                                                <MessageBox variant="danger">
-                                                    {errorReviewCreate}
-                                                </MessageBox>
-                                            )}
-                                        </div>
-                                    </form>
-                                ) : (
-                                    <MessageBox>
-                                        Por favor <Link to="/signin">faça Login</Link> para escrever uma avaliação
-                                    </MessageBox>
-                                )}
-                            </li>
-                        </ul>
-                    </div>
+                    </div>                 
                 </div>
             )}
         </div>
