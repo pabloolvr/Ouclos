@@ -68,17 +68,17 @@ productRouter.get('/styles', expressAsyncHandler(async (req, res) => {
     res.send(styles);
 }));
 // get all existent lensMaterials values from database
-productRouter.get('/lens-materials', expressAsyncHandler(async (req, res) => {
+productRouter.get('/lensmaterials', expressAsyncHandler(async (req, res) => {
     const lensMaterials = await Product.find().distinct('lensMaterial');
     res.send(lensMaterials);
 }));
 // get all existent frameColors values from database
-productRouter.get('/frame-colors', expressAsyncHandler(async (req, res) => {
+productRouter.get('/framecolors', expressAsyncHandler(async (req, res) => {
     const frameColors = await Product.find().distinct('frameColor');
     res.send(frameColors);
 }));
 // get all existent lensColors values from database
-productRouter.get('/lens-colors', expressAsyncHandler(async (req, res) => {
+productRouter.get('/lenscolors', expressAsyncHandler(async (req, res) => {
     const lensColors = await Product.find().distinct('lensColor');
     res.send(lensColors);
 })

@@ -59,7 +59,7 @@ export const listProducts = ({
     });
         try { // get data from - backend `/api/products?name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
         const { data } = await Axios.get(
-            `/api/products?name=${name}&category=${category}&gender=${gender}&lens-material=${lensMaterial}&style=${style}&frame-color=${frameColor}&lens-color=${lensColor}&min=${min}&max=${max}&rating=${rating}&order=${order}`
+            `/api/products?name=${name}&category=${category}&gender=${gender}&lensMaterial=${lensMaterial}&style=${style}&frameColor=${frameColor}&lensColor=${lensColor}&min=${min}&max=${max}&rating=${rating}&order=${order}`
             );
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch(e) {
@@ -116,7 +116,7 @@ export const listProductLensMaterials = () => async (dispatch) => {
         type: PRODUCT_LENS_MATERIAL_LIST_REQUEST,
     });
     try {
-        const { data } = await Axios.get(`/api/products/lens-materials`);
+        const { data } = await Axios.get(`/api/products/lensmaterials`);
         dispatch({ type: PRODUCT_LENS_MATERIAL_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: PRODUCT_LENS_MATERIAL_LIST_FAIL, payload: error.message });
@@ -130,7 +130,7 @@ export const listProductFrameColors = () => async (dispatch) => {
         type: PRODUCT_FRAME_COLOR_LIST_REQUEST,
     });
     try {
-        const { data } = await Axios.get(`/api/products/frame-colors`);
+        const { data } = await Axios.get(`/api/products/framecolors`);
         dispatch({ type: PRODUCT_FRAME_COLOR_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: PRODUCT_FRAME_COLOR_LIST_FAIL, payload: error.message });
@@ -144,7 +144,7 @@ export const listProductLensColors = () => async (dispatch) => {
         type: PRODUCT_LENS_COLOR_LIST_REQUEST,
     });
     try {
-        const { data } = await Axios.get(`/api/products/lens-colors`);
+        const { data } = await Axios.get(`/api/products/lenscolors`);
         dispatch({ type: PRODUCT_LENS_COLOR_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: PRODUCT_LENS_COLOR_LIST_FAIL, payload: error.message });

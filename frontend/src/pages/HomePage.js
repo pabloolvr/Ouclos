@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Product from '../components/Product';
+import ProductCard from '../components/ProductCard';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ export default function HomePage() {
             ) : (
                 <div className="row center">
                     {products.map((product) => (
-                        <Product key={product._id} product={product}></Product>
+                        <ProductCard key={product._id} product={product}></ProductCard>
                     ))}
                 </div>
             )}

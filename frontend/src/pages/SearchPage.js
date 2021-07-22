@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { listProductCategories, listProductFrameColors, listProductGenders, listProductLensColors, listProductLensMaterials, listProducts, listProductStyles } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Product from '../components/Product';
+import ProductCard from '../components/ProductCard';
 import Rating from '../components/Rating';
 import { prices, ratings } from '../utils';
 
@@ -25,13 +25,6 @@ export default function SearchPage(props) {
     // get productList from redux store
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
-    // get productCategoryList from redux store
-    const productCategoryList = useSelector((state) => state.productCategoryList);
-    const {
-        loading: loadingCategories,
-        error: errorCategories,
-        categories,
-    } = productCategoryList;
     // get productStyleList from redux store
     const productStyleList = useSelector((state) => state.productStyleList);
     const {
@@ -173,36 +166,6 @@ export default function SearchPage(props) {
             <div className="row top">
                 <div className="col-1">
                     <h1>Filtrar</h1>
-                    {/*
-                    <div>
-                        {loadingCategories ? (
-                            <LoadingBox></LoadingBox>
-                        ) : errorCategories ? (
-                            <MessageBox variant="danger">{errorCategories}</MessageBox>
-                        ) : (
-                            <ul>
-                                <li>
-                                    <Link
-                                        className={'all' === category ? 'active' : ''}
-                                        to={getFilterUrl({ category: 'all' })}
-                                    >
-                                        Todos
-                                    </Link>
-                                </li>
-                                {categories.map((c) => (
-                                    <li key={c}>
-                                        <Link
-                                            className={c === category ? 'active' : ''}
-                                            to={getFilterUrl({ category: c })}
-                                        >
-                                            {c}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                                */}
                     <div>
                         {loadingGenders ? (
                             <LoadingBox></LoadingBox>
@@ -210,31 +173,37 @@ export default function SearchPage(props) {
                             <MessageBox variant="danger">{errorGenders}</MessageBox>
                         ) : (
                             <div className="filter-box">
-                                <div className="filter-name" onClick={toggleGenderBox}>
-                                    <h3>Por Gênero</h3>
-                                </div>
-                                {isGenderBoxOpened && (
-                                    <div className="filter-content">
-                                        <ul>
-                                            <li>
-                                                <Link
-                                                    className={'all' === gender ? 'active' : ''}
-                                                    to={getFilterUrl({ gender: 'all' })}
-                                                >
-                                                    Todos
-                                                </Link>
-                                            </li>
-                                            {genders.map((f) => (
-                                                <li key={f}>
+                                {isGenderBoxOpened ? (
+                                    <div>
+                                        <div className="filter-name" onClick={toggleGenderBox}>
+                                            <h3>- Por Gênero</h3>
+                                        </div>
+                                        <div className="filter-content">
+                                            <ul>
+                                                <li>
                                                     <Link
-                                                        className={f === gender ? 'active' : ''}
-                                                        to={getFilterUrl({ gender: f })}
+                                                        className={'all' === gender ? 'active' : ''}
+                                                        to={getFilterUrl({ gender: 'all' })}
                                                     >
-                                                        {f}
+                                                        Todos
                                                     </Link>
                                                 </li>
-                                            ))}
-                                        </ul>
+                                                {genders.map((f) => (
+                                                    <li key={f}>
+                                                        <Link
+                                                            className={f === gender ? 'active' : ''}
+                                                            to={getFilterUrl({ gender: f })}
+                                                        >
+                                                            {f}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="filter-name" onClick={toggleGenderBox}>
+                                        <h3>+ Por Gênero</h3>
                                     </div>
                                 )}
                             </div>
@@ -247,11 +216,12 @@ export default function SearchPage(props) {
                             <MessageBox variant="danger">{errorStyles}</MessageBox>
                         ) : (
                             <div className="filter-box">
-                                <div className="filter-name" onClick={toggleStyleBox}>
-                                    <h3>Por Estilo</h3>
-                                </div>
-                                {isStyleBoxOpened && (
-                                    <div className="filter-content">
+                                {isStyleBoxOpened ? (
+                                    <div>
+                                        <div className="filter-name" onClick={toggleStyleBox}>
+                                            <h3>- Por Estilo</h3>
+                                        </div>
+                                        <div className="filter-content">
                                             <ul>
                                                 <li>
                                                     <Link
@@ -272,6 +242,11 @@ export default function SearchPage(props) {
                                                     </li>
                                                 ))}
                                             </ul>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="filter-name" onClick={toggleStyleBox}>
+                                        <h3>+ Por Estilo</h3>
                                     </div>
                                 )}
                             </div>
@@ -284,31 +259,37 @@ export default function SearchPage(props) {
                             <MessageBox variant="danger">{errorLensMaterials}</MessageBox>
                         ) : (
                             <div className="filter-box">
-                                <div className="filter-name" onClick={toggleLensMaterialBox}>
-                                    <h3>Por Material da Lente</h3>
-                                </div>
-                                {isLensMaterialBoxOpened && (
-                                    <div className="filter-content">
-                                        <ul>
-                                            <li>
-                                                <Link
-                                                    className={'all' === lensMaterial ? 'active' : ''}
-                                                    to={getFilterUrl({ lensMaterial: 'all' })}
-                                                >
-                                                    Todos
-                                                </Link>
-                                            </li>
-                                            {lensMaterials.map((f) => (
-                                                <li key={f}>
+                                {isLensMaterialBoxOpened ? (
+                                    <div>
+                                        <div className="filter-name" onClick={toggleLensMaterialBox}>
+                                            <h3>- Por Material da Lente</h3>
+                                        </div>
+                                        <div className="filter-content">
+                                            <ul>
+                                                <li>
                                                     <Link
-                                                        className={f === lensMaterial ? 'active' : ''}
-                                                        to={getFilterUrl({ lensMaterial: f })}
+                                                        className={'all' === lensMaterial ? 'active' : ''}
+                                                        to={getFilterUrl({ lensMaterial: 'all' })}
                                                     >
-                                                        {f}
+                                                        Todos
                                                     </Link>
                                                 </li>
-                                            ))}
-                                        </ul>
+                                                {lensMaterials.map((f) => (
+                                                    <li key={f}>
+                                                        <Link
+                                                            className={f === lensMaterial ? 'active' : ''}
+                                                            to={getFilterUrl({ lensMaterial: f })}
+                                                        >
+                                                            {f}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="filter-name" onClick={toggleLensMaterialBox}>
+                                        <h3>+ Por Material da Lente</h3>
                                     </div>
                                 )}
                             </div>
@@ -321,31 +302,37 @@ export default function SearchPage(props) {
                             <MessageBox variant="danger">{errorFrameColors}</MessageBox>
                         ) : (
                             <div className="filter-box">
-                                <div className="filter-name" onClick={toggleFrameColorBox}>
-                                    <h3>Por Cor da Armação</h3>
-                                </div>
-                                {isFrameColorBoxOpened && (
-                                    <div className="filter-content">
-                                        <ul>
-                                            <li>
-                                                <Link
-                                                    className={'all' === frameColor ? 'active' : ''}
-                                                    to={getFilterUrl({ frameColor: 'all' })}
-                                                >
-                                                    Todos
-                                                </Link>
-                                            </li>
-                                            {frameColors.map((f) => (
-                                                <li key={f}>
+                                {isFrameColorBoxOpened ? (
+                                    <div>
+                                        <div className="filter-name" onClick={toggleFrameColorBox}>
+                                            <h3>- Por Cor da Armação</h3>
+                                        </div>
+                                        <div className="filter-content"> 
+                                            <ul>
+                                                <li>
                                                     <Link
-                                                        className={f === frameColor ? 'active' : ''}
-                                                        to={getFilterUrl({ frameColor: f })}
+                                                        className={'all' === frameColor ? 'active' : ''}
+                                                        to={getFilterUrl({ frameColor: 'all' })}
                                                     >
-                                                        {f}
+                                                        Todos
                                                     </Link>
                                                 </li>
-                                            ))}
-                                        </ul>
+                                                {frameColors.map((f) => (
+                                                    <li key={f}>
+                                                        <Link
+                                                            className={f === frameColor ? 'active' : ''}
+                                                            to={getFilterUrl({ frameColor: f })}
+                                                        >
+                                                            {f}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="filter-name" onClick={toggleFrameColorBox}>
+                                        <h3>+ Por Cor da Armação</h3>
                                     </div>
                                 )}
                             </div>
@@ -358,31 +345,37 @@ export default function SearchPage(props) {
                             <MessageBox variant="danger">{errorLensColors}</MessageBox>
                         ) : (
                             <div className="filter-box">
-                                <div className="filter-name" onClick={toggleLensColorBox}>
-                                    <h3>Por Cor da Lente</h3>
-                                </div>
-                                {isLensColorBoxOpened && (
-                                    <div className="filter-content">
-                                        <ul>
-                                            <li>
-                                                <Link
-                                                    className={'all' === lensColor ? 'active' : ''}
-                                                    to={getFilterUrl({ lensColor: 'all' })}
-                                                >
-                                                    Todos
-                                                </Link>
-                                            </li>
-                                            {lensColors.map((f) => (
-                                                <li key={f}>
+                                {isLensColorBoxOpened ? (
+                                    <div>
+                                        <div className="filter-name" onClick={toggleLensColorBox}>
+                                            <h3>- Por Cor da Lente</h3>
+                                        </div>
+                                        <div className="filter-content">
+                                            <ul>
+                                                <li>
                                                     <Link
-                                                        className={f === lensColor ? 'active' : ''}
-                                                        to={getFilterUrl({ lensColor: f })}
+                                                        className={'all' === lensColor ? 'active' : ''}
+                                                        to={getFilterUrl({ lensColor: 'all' })}
                                                     >
-                                                        {f}
+                                                        Todos
                                                     </Link>
                                                 </li>
-                                            ))}
-                                        </ul>
+                                                {lensColors.map((f) => (
+                                                    <li key={f}>
+                                                        <Link
+                                                            className={f === lensColor ? 'active' : ''}
+                                                            to={getFilterUrl({ lensColor: f })}
+                                                        >
+                                                            {f}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="filter-name" onClick={toggleLensColorBox}>
+                                        <h3>+ Por Cor da Lente</h3>
                                     </div>
                                 )}
                             </div>
@@ -390,49 +383,62 @@ export default function SearchPage(props) {
                     </div>
                     <div>
                         <div className="filter-box">
-                            <div className="filter-name" onClick={togglePriceBox}>
-                                <h3>Por Preço</h3>
-                            </div>
-                                {isPriceBoxOpened && (
-                                    <div className="filter-content">
-                                        <ul>
-                                            {prices.map((p) => (
-                                                <li key={p.name}>
-                                                    <Link
-                                                        to={getFilterUrl({ min: p.min, max: p.max })}
-                                                        className={
-                                                            `${p.min}-${p.max}` === `${min}-${max}` ? 'active' : ''
-                                                        }
-                                                    >
-                                                        {p.name}
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                {isPriceBoxOpened ? (
+                                    <div>
+                                        <div className="filter-name" onClick={togglePriceBox}>
+                                            <h3>- Por Preço</h3>
+                                        </div>
+                                        <div className="filter-content">
+                                            <ul>
+                                                {prices.map((p) => (
+                                                    <li key={p.name}>
+                                                        <Link
+                                                            to={getFilterUrl({ min: p.min, max: p.max })}
+                                                            className={
+                                                                `${p.min}-${p.max}` === `${min}-${max}` ? 'active' : ''
+                                                            }
+                                                        >
+                                                            {p.name}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                ) : (
+                                    <div className="filter-name" onClick={togglePriceBox}>
+                                        <h3>+ Por Preço</h3>
                                     </div>
                                 )}
                         </div>
                     </div>
                     <div>
                         <div className="filter-box">
-                            <div className="filter-name" onClick={toggleRatingBox}>
-                                <h3>Por Avaliação</h3>
-                            </div>
-                            {isRatingBoxOpened && (
-                                <div className="filter-content">
-                                    <ul>
-                                        {ratings.map((r) => (
-                                            <li key={r.name}>
-                                                <Link
-                                                    to={getFilterUrl({ rating: r.rating })}
-                                                    className={`${r.rating}` === `${rating}` ? 'active' : ''}
-                                                >
-                                                    <Rating caption={' ou mais'} rating={r.rating}></Rating>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
+                            {isRatingBoxOpened ? (
+                                <div>
+                                    <div className="filter-name" onClick={toggleRatingBox}>
+                                        <h3>- Por Avaliação</h3>
+                                    </div>
+                                    <div className="filter-content">
+                                        <ul>
+                                            {ratings.map((r) => (
+                                                <li key={r.name}>
+                                                    <Link
+                                                        to={getFilterUrl({ rating: r.rating })}
+                                                        className={`${r.rating}` === `${rating}` ? 'active' : ''}
+                                                    >
+                                                        <Rating caption={' ou mais'} rating={r.rating}></Rating>
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
+                            ) : (
+                            <div className="filter-name" onClick={toggleRatingBox}>
+                                <h3>+ Por Avaliação</h3>
+                            </div>
                             )}
                         </div>
                     </div>
@@ -449,7 +455,7 @@ export default function SearchPage(props) {
                             )}
                             <div className="row center">
                                 {products.map((product) => (
-                                    <Product key={product._id} product={product}></Product>
+                                    <ProductCard key={product._id} product={product}></ProductCard>
                                 ))}
                             </div>
                         </>

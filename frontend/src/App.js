@@ -112,13 +112,19 @@ function App() {
                 </header>
                 <header className="nav-categories">
                     <div className="nav-item">
-                        <Link to="/search/category/Óculos%20de%20Sol/name/all/min/0/max/0/rating/0/order/newest">óculos de sol</Link>
+                        <Link to="/search/category/Óculos%20de%20Sol/name/all/gender/all/lensMaterial/all/style/all/frameColor/all/lensColor/all/min/0/max/0/rating/0/order/newest">
+                            óculos de sol
+                        </Link>
                     </div>
                     <div className="nav-item">
-                        <Link to="/search/category/Óculos%20de%20Grau/name/all/min/0/max/0/rating/0/order/newest">óculos de grau</Link>
+                        <Link to="/search/category/Óculos%20de%20Grau/name/all/gender/all/lensMaterial/all/style/all/frameColor/all/lensColor/all/min/0/max/0/rating/0/order/newest">
+                            óculos de grau
+                        </Link>
                     </div>
                     <div className="nav-item">
-                        <Link to="/search/category/Óculos%20de%20Computador/name/all/min/0/max/0/rating/0/order/newest">óculos de computador</Link>
+                        <Link to="/search/category/Óculos%20de%20Computador/name/all/gender/all/lensMaterial/all/style/all/frameColor/all/lensColor/all/min/0/max/0/rating/0/order/newest">
+                            óculos de computador
+                        </Link>
                     </div>
                 </header>
                 <main>
@@ -135,7 +141,6 @@ function App() {
                     <Route path="/order/:id" component={OrderPage} exact></Route>
                     <Route path="/orderhistory" component={OrderHistoryPage}></Route>
                     <Route path="/search/name/:name?" component={SearchPage}></Route>
-                    {/*path="/search/category/:category/name/:name/gender/:gender/lens-material/:lens-material/style/:style/frameColor/:frameColor/lensColor/:lensColor/min/:min/max/:max/rating/:rating/order/:order"*/}
                     <Route
                         path="/search/category/:category/name/:name/gender/:gender/lensMaterial/:lensMaterial/style/:style/frameColor/:frameColor/lensColor/:lensColor/min/:min/max/:max/rating/:rating/order/:order"
                         component={SearchPage}
