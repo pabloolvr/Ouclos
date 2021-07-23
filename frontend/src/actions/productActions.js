@@ -30,6 +30,9 @@ import {
     PRODUCT_REVIEW_CREATE_FAIL, 
     PRODUCT_REVIEW_CREATE_REQUEST, 
     PRODUCT_REVIEW_CREATE_SUCCESS, 
+    PRODUCT_STOCK_UPDATE_FAIL, 
+    PRODUCT_STOCK_UPDATE_REQUEST, 
+    PRODUCT_STOCK_UPDATE_SUCCESS, 
     PRODUCT_STYLE_LIST_FAIL, 
     PRODUCT_STYLE_LIST_REQUEST, 
     PRODUCT_STYLE_LIST_SUCCESS, 
@@ -194,7 +197,7 @@ export const createProduct = () => async (dispatch, getState) => {
     }
 };
 /**
- * Use api to update product.
+ * Use api to update product information.
  */
 export const updateProduct = (product) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_UPDATE_REQUEST, payload: product });
@@ -213,6 +216,28 @@ export const updateProduct = (product) => async (dispatch, getState) => {
                 ? error.response.data.message
                 : error.message;
         dispatch({ type: PRODUCT_UPDATE_FAIL, error: message });
+    }
+};
+/**
+ * Use api to update product stock quantity.
+ */
+export const updateProductStock = (product) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_STOCK_UPDATE_REQUEST, payload: product });
+    const {
+        userLogin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await Axios.put(`/api/products/${product._id}/stock`, product,
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` },
+            });
+        dispatch({ type: PRODUCT_STOCK_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: PRODUCT_STOCK_UPDATE_FAIL, error: message });
     }
 };
 /**

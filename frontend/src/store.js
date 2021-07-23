@@ -1,9 +1,9 @@
 // redux store
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { cartReducer } from './reducers/cartReducer';
-import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderParticularListReducer, orderPayReducer } from './reducers/orderReducer';
-import { productStyleListReducer, productCreateReducer, productDeleteReducer, productDetailsReducer, productGenderListReducer, productListReducer, productReviewCreateReducer, productUpdateReducer, productCategoryListReducer, productLensMaterialListReducer, productFrameColorListReducer, productLensColorListReducer } from './reducers/productReducers';
+import { cartReducer } from './reducers/cartReducer'; 
+import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderParticularListReducer } from './reducers/orderReducer';
+import { productStyleListReducer, productCreateReducer, productDeleteReducer, productDetailsReducer, productGenderListReducer, productListReducer, productReviewCreateReducer, productUpdateReducer, productCategoryListReducer, productLensMaterialListReducer, productFrameColorListReducer, productLensColorListReducer, productUpdateStockReducer } from './reducers/productReducers';
 import { userDeleteReducer, userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer } from './reducers/userReducer';
 
 const initialState = {
@@ -45,12 +45,12 @@ const reducer = combineReducers({
     productDetails: productDetailsReducer,
     productCreate: productCreateReducer,
     productUpdate: productUpdateReducer,
+    productUpdateStock: productUpdateStockReducer,
     productDelete: productDeleteReducer,
     productReviewCreate: productReviewCreateReducer,
     cart: cartReducer,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
-    orderPay: orderPayReducer,
     orderParticularList: orderParticularListReducer,
     orderList: orderListReducer,
     orderDelete: orderDeleteReducer,

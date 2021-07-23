@@ -39,6 +39,10 @@ const {
     PRODUCT_CATEGORY_LIST_REQUEST,
     PRODUCT_CATEGORY_LIST_SUCCESS,
     PRODUCT_CATEGORY_LIST_FAIL,
+    PRODUCT_STOCK_UPDATE_RESET,
+    PRODUCT_STOCK_UPDATE_FAIL,
+    PRODUCT_STOCK_UPDATE_SUCCESS,
+    PRODUCT_STOCK_UPDATE_REQUEST,
 } = require('../constants/productConstants');
 
 export const productListReducer = (state = { loading: true, products: [] }, action) => {
@@ -169,6 +173,21 @@ export const productUpdateReducer = (state = {}, action) => {
         case PRODUCT_UPDATE_FAIL:
             return { loading: false, error: action.payload };
         case PRODUCT_UPDATE_RESET:
+            return {};
+        default:
+            return state;
+    }
+};
+
+export const productUpdateStockReducer = (state = {}, action) => {
+    switch (action.type) {
+        case PRODUCT_STOCK_UPDATE_REQUEST:
+            return { loading: true };
+        case PRODUCT_STOCK_UPDATE_SUCCESS:
+            return { loading: false, success: true };
+        case PRODUCT_STOCK_UPDATE_FAIL:
+            return { loading: false, error: action.payload };
+        case PRODUCT_STOCK_UPDATE_RESET:
             return {};
         default:
             return state;

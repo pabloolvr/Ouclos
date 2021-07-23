@@ -174,7 +174,7 @@ governador valadares 308
 
 All tests mentioned before worked as expected in Google Chrome and Postman.
 
-## Execution procedure
+## Execution procedures
 
 It is not necessary to setup or execute anything related to MongoDB because it is hosted on cloud.
 

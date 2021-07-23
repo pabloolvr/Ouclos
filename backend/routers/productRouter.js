@@ -128,21 +128,34 @@ productRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) 
         const productId = req.params.id;
         const product = await Product.findById(productId);
         if (product) {
-            product.name = req.body.name;
-            product.image = req.body.image;
-            product.price = req.body.price;
-            product.category = req.body.category;
-            product.description = req.body.description;
-            product.quantity = req.body.quantity;
-            product.gender = req.body.gender;
-            product.lensMaterial = req.body.lensMaterial;
-            product.frameMaterial = req.body.frameMaterial;
-            product.style = req.body.style;
-            product.lensColor = req.body.lensColor;
-            product.frameColor = req.body.frameColor;
-            product.lensProtection = req.body.lensProtection;
+            product.name = req.body.name ? req.body.name : product.name;
+            product.image = req.body.image ? req.body.image : product.image;
+            product.price = req.body.price ? req.body.price : product.price;
+            product.category = req.body.category ? req.body.category : product.category;
+            product.description = req.body.description ? req.body.description : product.description;
+            product.quantity = req.body.quantity ? req.body.quantity : product.quantity;
+            product.gender = req.body.gender ? req.body.gender : product.gender;
+            product.lensMaterial = req.body.lensMaterial ? req.body.lensMaterial : product.lensMaterial;
+            product.frameMaterial = req.body.frameMaterial ? req.body.frameMaterial : product.frameMaterial;
+            product.style = req.body.style ? req.body.style : product.style;
+            product.lensColor = req.body.lensColor ? req.body.lensColor : product.lensColor;
+            product.frameColor = req.body.frameColor ? req.body.frameColor : product.frameColor;
+            product.lensProtection = req.body.lensProtection ? req.body.lensProtection : product.lensProtection;
             const updatedProduct = await product.save();
             res.send({ message: 'Product Updated', product: updatedProduct });
+        } else {
+            res.status(404).send({ message: 'Product Not Found' });
+        }
+    })
+);
+// update product stock by its id
+productRouter.put('/:id/stock', isAuth, expressAsyncHandler(async (req, res) => {
+        const productId = req.params.id;
+        const product = await Product.findById(productId);
+        if (product) {
+            product.quantity = req.body.quantity;
+            const updatedProduct = await product.save();
+            res.send({ message: 'Product Stock Updated', product: updatedProduct });
         } else {
             res.status(404).send({ message: 'Product Not Found' });
         }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createOrder} from '../actions/orderActions';
+import { updateProductStock } from '../actions/productActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -21,14 +22,17 @@ export default function PlaceOrderPage(props) {
         cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
     );
     // set frete
-    cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
-    //cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
+    cart.shippingPrice = cart.itemsPrice > 300 ? toPrice(0) : toPrice(cart.itemsPrice*0.05);
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
 
     // dispatch place order action
     const dispatch = useDispatch();
     const placeOrderHandler = (/*paymentResult*/) => {
         dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+        cart.cartItems.forEach((item) => {
+            console.log('removed ' + item.qty + ' from stock')
+            dispatch(updateProductStock({ _id: item.product, quantity: item.quantity - item.qty}));
+        });
     };
 
     useEffect(() => {

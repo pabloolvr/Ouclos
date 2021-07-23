@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deliverOrder, getOrderDetails, payOrder } from '../actions/orderActions';
+import { deliverOrder, getOrderDetails } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants';
+import { ORDER_DELIVER_RESET } from '../constants/orderConstants';
 
 export default function OrderPage(props) {
     const orderId = props.match.params.id;
@@ -15,12 +15,6 @@ export default function OrderPage(props) {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
     // get orderPay from redux store
-    const orderPay = useSelector((state) => state.orderPay);
-    const {
-        loading: loadingPay,
-        error: errorPay,
-        success: successPay,
-    } = orderPay;
 
     const orderDeliver = useSelector((state) => state.orderDeliver);
     const {
@@ -31,18 +25,13 @@ export default function OrderPage(props) {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        // reload the page if the order has just been paid or the order in the variable 'order' is not the same as the one being shown in the page
-        if (!order || successPay || successDeliver || (order && order._id !== orderId)) {
-            dispatch({ type: ORDER_PAY_RESET });
+        // reload the page if the order has just been delivered or the order in the variable 'order' is not the same as the one being shown in the page
+        if (!order || successDeliver || (order && order._id !== orderId)) {
             dispatch({ type: ORDER_DELIVER_RESET });
             dispatch(getOrderDetails(orderId));
         }
-    }, [dispatch, order, orderId, successPay, successDeliver]);
+    }, [dispatch, order, orderId, successDeliver]);
 
-    const successPaymentHandler = () => {
-        console.log('chamou payOrder');
-        dispatch(payOrder(order));
-    };
     const deliverHandler = () => {
         dispatch(deliverOrder(order._id));
     };
@@ -153,23 +142,6 @@ export default function OrderPage(props) {
                                     </div>
                                 </div>
                             </li>
-                            {!order.isPaid && (
-                                <li>
-                                    <>
-                                        {errorPay && (
-                                            <MessageBox variant="danger">{errorPay}</MessageBox>
-                                        )}
-                                        {loadingPay && <LoadingBox></LoadingBox>}
-                                        <button
-                                            type="button"
-                                            onClick={successPaymentHandler}
-                                            className="primary block"
-                                        >
-                                            pagar pedido
-                                        </button>
-                                    </>
-                                </li>
-                            )}
                             {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                                 <li>
                                     {loadingDeliver && <LoadingBox></LoadingBox>}
