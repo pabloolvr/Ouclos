@@ -145,11 +145,15 @@ The backend tests were made using Postman and browser.
 
 - **Register:** The user must fill all the mandatory fields regarding to Personal Data, except phone. CPF and Email must be inserted in the correct formats otherwise there will be an error box informing to use the correct format. The fields regarding to Address are optional
 
-- **Login:** To access the login page, the user must click in the 'acessar conta' button. Once there, the user must insert email and password correctly and a validation is done using info in the database. An error box informing that email or password are invalid should appear if they don't match the information in the database. If email and password match, the user is redirected to the home page and the button 'acessar conta' becomes 'Olá, <User Name>'.
+- **Login:** To access the login page, the user must click in the 'acessar conta' button. Once there, the user must insert email and password correctly and a validation is done using info in the database. An error box informing that email or password are invalid should appear if they don't match the information in the database. If email and password match, the user is redirected to the home page and the button 'acessar conta' becomes 'olá, (User Name)'.
 
-- **Search Products**
+- **Search Products:** The user can access the search page by clicking in one of the category product buttons in the header navigation bar or inserting a name in the search bar and pressing enter. Once there, the user must be able to filter by product caracteristics and sort by date, price and rating all the products that match the category or name, depending on how the page was accessed.
 
-- **Place Order**
+- **Cart:** The user, authenticated or not, must be able to fill the cart by pressing the button 'adicionar ao carrinho' in a product page and select the quantity of a product in the cart page, which can be accessed by the header navigation throught the button 'sacola' or when the button 'adicionar ao carrinho' is pressed. In the cart page, the user must be able to finish the order by pressing 'finalizar compra'. If the user is authenticated, they are redirected directly to the address page, otherwise, the user must log in first in the login page and then redirected to the address page.
+
+- **Place Order:**  
+    - When finishing the order, the authenticated user will be redirected to the address page, where they must fill in all the necessary fields to the address. If the user has already an address registered, the fields are automatically field with the information from it. With exception of the number, all address fields are required and an error box appears if one of them is not inserted. The CEP field has a specific format and, if the user doesn't insert in this format, an error box appear informing the format is wrong.
+    - AAA
 
 - **Edit Profile and Address**
 
@@ -160,8 +164,6 @@ The backend tests were made using Postman and browser.
 - **Product Management**
 
 - **Order Management**
-
-- **Cart**
 
 - **Review**
 
