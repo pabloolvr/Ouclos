@@ -27,9 +27,14 @@ Web Project for SCC0219
 
 ## Project Description
 ### Navigation Diagram
+The website was developed using React, NodeJS and Redux, used to manage the application states. MongoDB was used for the backend.
 ![NavigationDiagram](https://user-images.githubusercontent.com/48020553/126726170-3f1b2ef5-7a46-4ff0-9951-47b662b73da8.jpg)
 ## Source comments
-The website was developed using React, NodeJS and Redux, used to manage the application states. MongoDB was used for the backend.
+The source code of the project is consisted of two parts, frontend and backend.
+### Frontend
+The frontend part contains all files related to the visual part of the system. It has a global ```index.css``` file
+### Backend
+
 ## Test plan
 ## Test results
 ## Execution procedure
