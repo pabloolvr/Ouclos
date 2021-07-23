@@ -50,11 +50,29 @@ The backend part contains all files related to the data management part of the s
 
 ## Test plan
 
-The backend tests were made using Postman.
+The backend tests were made using Postman and browser. 
 
 ### Backend
 
-#### /user
+#### /api/users
+
+ - get /
+ Get data of all users from database. It requires user and admin authentication and if one of these two is not validated, a 401 error is returned.
+ - get /:id
+ Get data of a user with a given id. It returns a 404 error if id is not found in the database.
+ - delete /:id
+ Delete an user with a given id. It requires user and admin authentication and if one of these two is not validated, a 401 error is returned. It returns a 404 error if id is not found in the database. It returns a 400 error if the admin that comes with the application is being removed.
+ - put /:id
+ Makes a common user with a given id an admin. Requires user and admin authentication, if one of these two is not validated, a 401 error is returned.
+ - put /profile
+ Update information of a user. Requires user authentication and if it is not validated, a 401 error is returned. It returns a 404 error if id is not found in the database.
+ - post /register
+ Register an user into the database.
+ - post /login
+ Log in an user into the system. It returns a 401 error if email or password is incorrectly inserted.
+ - get /seed
+ Get data of pre-defined users. 
+
 
 #### /product
 

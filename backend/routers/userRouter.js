@@ -90,7 +90,7 @@ userRouter.get('/:id', expressAsyncHandler(async (req, res) => {
         }
     })
 );
-// update data from a user
+// update data of a user
 userRouter.put('/profile', isAuth, expressAsyncHandler(async (req, res) => {
         const user = await User.findById(req.user._id);
         if (user) {
