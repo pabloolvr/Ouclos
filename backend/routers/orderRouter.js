@@ -40,7 +40,6 @@ orderRouter.post('/', isAuth, expressAsyncHandler(async (req, res) => {
         }
     })
 );
-
 // get order by id
 orderRouter.get('/:id', isAuth, expressAsyncHandler(async (req, res) => {
         // find order in database

@@ -34,17 +34,17 @@ The source code of the project is consisted of two parts, frontend and backend.
 ### Frontend
 
 The frontend part contains all files related to the visual part of the system. It has a global ```index.css``` file, responsible for all the website styling and a ```store.css``` file, which is the redux store, responsible to hold the current application state inside of it. Inside the frontend part there are two directories, ```public```, which basically stores images used in the application and ```src```, which stores all the source code of the application, divided into the following directories:
- - ```src/actions```
- - ```src/components```
- - ```src/constants```
- - ```src/pages```
- - ```src/reducers```
+ - ```src/actions```: stores methods responsible to execute events in the application, like making requests to the server, from different entities of the system.
+ - ```src/components```: stores source code of reusable components used in the site, like the product card.
+ - ```src/pages```: stores the pages of the website.
+ - ```src/reducers```: stores functions that change the states of the application based on actions performed, each reducer is directly used in the redux store.
+ - ```src/constants```: defines what type of actions can be performed for each reducer.
  
 ### Backend
 
 The backend part contains all files related to the data management part of the system. It have ```index.js```, responsible to run the server, ```utils.js```, responsible to implement authentication methods and ```data.js```, which stores predefined data to send to the database. The backend part has two directories:
- - ```models```
- - ```routers```
+ - ```models```: stores the data models of entities of the database, e.g., the data fields of entities like product and user.
+ - ```routers```: stores server routes to different http requests of entities of the system.
 
 ## Test plan
 ## Test results
