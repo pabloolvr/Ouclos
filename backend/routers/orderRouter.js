@@ -57,7 +57,6 @@ orderRouter.get('/:id', isAuth, expressAsyncHandler(async (req, res) => {
 
 orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async (req, res) => {
     // find order in database
-    console.log('idOrder: ' + req.params.id);
     const order = await Order.findById(req.params.id);
         if (order) {
             order.isPaid = true;

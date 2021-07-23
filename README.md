@@ -49,7 +49,39 @@ The backend part contains all files related to the data management part of the s
  - ```routers```: stores server routes to different http requests of entities of the system.
 
 ## Test plan
+
+The backend tests were made using Postman.
+
+### Backend
+
+#### /user
+
+#### /product
+
+#### /order
+
+### Frontend
+
+- **Register**
+
+- **Login**
+
+- **Edit Profile and Address**
+
+- **Acces Orders**
+
+- **User Management**
+
+- **Product Management**
+
+- **Order Management**
+
+- **Cart**
+
 ## Test results
+
+All the tests mentioned before worked as expected.
+
 ## Execution procedure
 
 ### 1. Download or Clone repo
