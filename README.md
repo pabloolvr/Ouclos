@@ -39,6 +39,7 @@ The frontend part contains all files related to the visual part of the system. I
  - constants
  - pages
  - reducers
+ 
 ### Backend
 
 ## Test plan
