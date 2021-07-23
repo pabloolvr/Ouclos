@@ -5,7 +5,7 @@ import Product from '../models/productModel.js';
 import { isAdmin, isAuth } from '../utils.js';
 
 const productRouter = express.Router(); // defines api routers for products
-// get all data from database
+// get product data from database based on a filter in the req 
 productRouter.get('/', expressAsyncHandler(async (req, res) => {
     const name = req.query.name || '';
     const category = req.query.category || '';
@@ -149,8 +149,7 @@ productRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) 
     })
 );
 // delete product by its id
-productRouter.delete('/:id', isAuth, isAdmin,
-    expressAsyncHandler(async (req, res) => {
+productRouter.delete('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
         const product = await Product.findById(req.params.id);
         if (product) {
             const deleteProduct = await product.remove();
