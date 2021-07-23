@@ -207,17 +207,17 @@ export default function ProductEditionPage(props) {
                             <input
                                 id="lensMaterial"
                                 type="text"
-                                placeholder="Óculos de Sol, Óculos de Grau ou Óculos de Computador"
+                                        placeholder="Material da Lente"
                                 value={lensMaterial}
                                 onChange={(e) => setLensMaterial(e.target.value)}
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="frameMaterial">Material da Lente</label>
+                            <label htmlFor="frameMaterial">Material da Armação</label>
                             <input
                                 id="frameMaterial"
                                 type="text"
-                                placeholder="Material da Lente"
+                                placeholder="Material da Armação"
                                 value={frameMaterial}
                                 onChange={(e) => setFrameMaterial(e.target.value)}
                             ></input>

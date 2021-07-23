@@ -205,6 +205,22 @@ img.large {
 }
 /* Card */
 .card {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+.card-body {
+  padding: 1rem;
+}
+.card-body > * {
+  margin-bottom: 0.5rem;
+}
+.price {
+  font-size: 2rem;
+}
+/* Product Card */
+.product-card {
     border: 0.1rem #c0c0c0 solid;
     background-color: #f8f8f8;
     border-radius: 0.5rem;
@@ -212,27 +228,30 @@ img.large {
     width: 30rem;
     height: 45rem;
 }
-.card-image {
+.product-card-image {
     height: 30rem;
     border-radius: 0.5rem;
     background-color: white;
     position: relative;
 }
-.card-image img {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.product-card-image img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.card-body {
-    padding: 1rem;
+.product-card h2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
-.card-body > * {
-    margin-bottom: 0.5rem;
+.product-card .rating {
+    padding-left: 1rem;
+    padding-bottom: 1rem; 
 }
 .return {
     padding-left: 2rem;
 }
-.price {
+.product-card-price {
+    padding: 1rem;
     font-size: 2rem;
 }
 /* Rating */
@@ -453,10 +472,8 @@ img.large {
     border-style: solid;
     border-color: #c0c0c0;  
     padding: 1rem 0.5rem 1rem 0.5rem; 
-    /*background-color: black;*/
 }
 .reviews li {
-    /*background-color: white;*/
     border: 1px;
     border-radius: 5px;
     border-style: solid;
