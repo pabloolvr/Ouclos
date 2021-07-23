@@ -32,7 +32,8 @@ The website was developed using React, NodeJS and Redux, used to manage the appl
 ## Source comments
 The source code of the project is consisted of two parts, frontend and backend.
 ### Frontend
-The frontend part contains all files related to the visual part of the system. It has a global ```index.css``` file
+The frontend part contains all files related to the visual part of the system. It has a global ```index.css``` file, responsible for all the website styling and a ```store.css``` file, which is the redux store, responsible to hold the current application state inside of it. Inside the frontend part there are two directories, ```public```, which basically stores images used in the application and ```src```, which stores all the source code of the application, divided into the following directories:
+ - 
 ### Backend
 
 ## Test plan
