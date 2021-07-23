@@ -30,7 +30,6 @@ export default function PlaceOrderPage(props) {
     const placeOrderHandler = (/*paymentResult*/) => {
         dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
         cart.cartItems.forEach((item) => {
-            console.log('removed ' + item.qty + ' from stock')
             dispatch(updateProductStock({ _id: item.product, quantity: item.quantity - item.qty}));
         });
     };
