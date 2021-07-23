@@ -19,7 +19,7 @@ Web Project for SCC0219
 
  - Products are selected, their quantity chosen, and are included in a cart. Carts are emptied only on payment or by customers.
 
- - To buy a product, the user first need to insert an address with their respective information: public place, public place number, neighbourhood, city, state and postal code. If the user already has a registered address, the fields are automatically filled. After inserting the addres, the user must choose de payment method, between credit card and debit card, and insert the following information: credit card number (any number is accepted by the system), card validation date, card security code and cpf of the owner of the card. After inserting the address and the credit card information, the user place the order and the quantity of products sold is subtracted from the quantity in stock and added to the quantity sold. 
+ - To buy a product, the user first need to insert an address with their respective information: public place, public place number, neighbourhood, city, state and postal code. If the user already has a registered address, the fields are automatically filled. After inserting the address, the user must choose de payment method, between credit card and debit card, and insert the following information: credit card number (any number is accepted by the system), card validation date, card security code and cpf of the owner of the card. After inserting the address and the credit card information, the user place the order and the quantity of products sold is subtracted from the quantity in stock and added to the quantity sold. 
 
  - The system has a rating system in which the logged in users can give a rating, which ranges from 1 to 5 stars, to each product.
 
@@ -176,6 +176,8 @@ All tests mentioned before worked as expected in Google Chrome and Postman.
 
 ## Execution procedure
 
+It is not necessary to setup or execute anything related to MongoDB because it is hosted on cloud.
+
 ### 1. Download or Clone repo
 
 ```
@@ -186,18 +188,7 @@ $ git@github.com:pabloolvr/ProjectDevWeb.git
 
  - Install NodeJS and NPM from https://nodejs.org/en/download/.
 
-### 3. Setup MongoDB
-
-- Local MongoDB
-  - Install it from [here](https://www.mongodb.com/try/download/community)
-  - Create .env file in root folder
-  - Set MONGODB_URL=mongodb://localhost/ouclos
-- Atlas Cloud MongoDB
-  - Create database at [https://cloud.mongodb.com](https://cloud.mongodb.com)
-  - Create .env file in root folder
-  - Set MONGODB_URL=mongodb+srv://your-db-connection
-
-### 4. Run Backend
+### 3. Run Backend
 
 ```
 $ cd ProjectDevWeb
@@ -205,7 +196,7 @@ $ npm install
 $ npm start
 ```
 
-### 5. Run Frontend
+### 4. Run Frontend
 
 ```
 # open new terminal
@@ -214,7 +205,7 @@ $ npm install
 $ npm start
 ```
 
-### 6. Admin Login
+### 5. Admin Login
 
 - admin user: admin@email.com
 - admin password: admin

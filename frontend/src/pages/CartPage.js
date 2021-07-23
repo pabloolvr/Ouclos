@@ -63,7 +63,7 @@ export default function CartPage(props) {
                                             ))}
                                         </select>
                                     </div>
-                                    <div>R$ {item.price}</div>
+                                    <div>R$ {item.price.toFixed(2)}</div>
                                     <div>
                                         <button
                                             type="button" onClick={() => removeFromCartHandler(item.product)}>Remover</button>

@@ -49,7 +49,6 @@ orderRouter.get('/:id', isAuth, expressAsyncHandler(async (req, res) => {
         } else {
             res.status(404).send({ message: 'Order Not Found' });
         }
-    console.log('from get order ' + req.params.id);
     })
 );
 /*
