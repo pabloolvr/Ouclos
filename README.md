@@ -7,7 +7,7 @@ Web Development Project for SCC0219
 
  - Administrators are responsible for registering/managing by turning an non administrator user into an administrator.
 
- - Administrators responsible for manage products, e.g., they can create, update, read and delete products.
+ - Administrators are responsible for manage products, e.g., they can create, update, read and delete products.
 
  - Administrators are also responsible to manage orders, they can read, set as delivered and delete orders.
 
