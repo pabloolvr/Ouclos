@@ -1,6 +1,6 @@
 # DevWebProject
 
-Web Project for SCC0219
+Web Development Project for SCC0219
 
 ## Requirements
  - The system have 2 types of users: Customers and Administrators. The application already comes with an admin account with password admin.
