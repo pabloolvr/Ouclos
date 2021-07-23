@@ -66,14 +66,14 @@ export default function UserListPage(props) {
                                         className="small"
                                         onClick={() => props.history.push(`/user/${user._id}/edit`)}
                                     >
-                                        Editar
+                                        editar
                                     </button>
                                     <button
                                         type="button"
                                         className="small"
                                         onClick={() => deleteHandler(user)}
                                     >
-                                        Deletar
+                                        deletar
                                     </button>
                                 </td>
                             </tr>

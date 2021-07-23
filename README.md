@@ -149,30 +149,30 @@ The backend tests were manually made in the browser.
 
 - **Login:** To access the login page, the user must click in the 'acessar conta' button. Once there, the user must insert email and password correctly and a validation is done using info in the database. An error box informing that email or password are invalid should appear if they don't match the information in the database. If email and password match, the user is redirected to the home page and the button 'acessar conta' becomes 'olá, (User Name)'.
 
-- **Search Products:** The user can access the search page by clicking in one of the category product buttons in the header navigation bar or inserting a name in the search bar and pressing enter. Once there, the user must be able to filter by product caracteristics and sort by date, price and rating all the products that match the category or name, depending on how the page was accessed.
+- **Search Products:** The user can access the search page by clicking in one of the category product buttons in the header navigation bar or inserting a name in the search bar and clicking enter. Once there, the user must be able to filter by product caracteristics and sort by date, price and rating all the products that match the category or name, depending on how the page was accessed.
 
-- **Cart:** The user, authenticated or not, must be able to fill the cart by pressing the button 'adicionar ao carrinho' in a product page and select the quantity of a product in the cart page, which can be accessed by the header navigation throught the button 'sacola' or when the button 'adicionar ao carrinho' is pressed. In the cart page, the user must be able to finish the order by pressing 'finalizar compra'. If the user is authenticated, they are redirected directly to the address page, otherwise, the user must log in first in the login page and then redirected to the address page.
-
+- **Cart:** The user, authenticated or not, must be able to fill the cart by clicking the button 'adicionar ao carrinho' in a product page and select the quantity of a product in the cart page, which can be accessed by the header navigation throught the button 'sacola' or when the button 'adicionar ao carrinho' is clicked. In the cart page, the user must be able to finish the order by clicking 'finalizar compra'. If the user is authenticated, they are redirected directly to the address page, otherwise, the user must log in first in the login page and then redirected to the address page.
+governador valadares 308
 - **Place Order:**  
     - When finishing the order, the authenticated user will be redirected to the address page, where they must fill in all the necessary fields to the address. If the user has already an address registered, the fields are automatically filled with the information from it. With exception of the number, all address fields are required and an error box appears if one of them is not inserted. The CEP field has a specific format and, if the user doesn't insert in this format, an error box appear informing the format is wrong.
     - After clicking the button 'Continuar' in the address page, the user will be redirected to the payment page, where they must select the Payment Menthod, between credit or debit card, and fill all the field regarding to card information. All card fields are required and have an specific format. If a field is not filled or incorrectly filled, a error box appears warning about the respective error.
-    - After clicking the button 'Continuar' in the payment page, the user will be redirected to the place order page, showing the shipping address, payment method, items in cart and order summary. The user can then place the order by pressing the button 'finalizar pedido', being redirected to the order page, that shows all the order information.
+    - After clicking the button 'Continuar' in the payment page, the user will be redirected to the place order page, showing the shipping address, payment method, items in cart and order summary. The user can then place the order by clicking the button 'finalizar pedido', being redirected to the order page, that shows all the order information.
 
-- **Edit Profile and Address**
+- **Edit Profile and Address:** The user must be able to edit their profile and address information in their respective edition pages by clicking the buttons 'Perfil' or 'Endereço' inside the user dropdown in the header navigation bar. For the profile and address edition pages, there are a sequence of input boxes in which there will be the information stored for each field. To modify a field the user must write into the input box and then click the button 'alterar dados'. After that, the user's information will be modified in the database.
 
-- **Access Orders**
+- **Access Orders:** The user must be able to access their orders by clicking the button 'Pedidos' inside the user dropdown in the header navigation bar. In the order history page, all the orders placed by the user must be shown and, for each order, it is possible to see its details by clicking the button 'Detalhes', that will redirect the user to the respective order page.
 
-- **User Management**
+- **User Management:** The admin must be able to access the user list page from the button 'Usuários' on the admin dropdown in the header navigation bar. In the user list page, the admin can see every user registered in the system and, for each user, it is possible to delete ou make them an admin. If an admin tries to delete a user, a window should appear to confirm. If an admin tries to remove the first admin, a error box should appear informing that it is not possible to remove that admin. To make an user an admin, an user must click the button 'editar', redirecting them to the update user page.
 
-- **Product Management**
+- **Product Management:** The admin must be able to access the product list page from the button 'Produtos' on the admin dropdown in the header navigation bar. In the product list page, the admin can see every user product registered in the system and, for each product, it is possible to delete it by clicking the button  'deletar' or edit and see details of it by clicking the button 'editar'. If an admin tries to delete a product, a window should appear to confirm. If an admin clicks the 'editar' button, they will be redirected to the product edition page, where it is possible to see all the product data for each field and modify them by writing in the fields and clicking the button 'atualizar'.
 
-- **Order Management**
+- **Order Management:** The admin must be able to access the order list page from the button 'Pedidos' on the admin dropdown in the header navigation bar. In the order list page, the admin can see every user order registered in the system and, for each order, it is possible to see details of it by clicking the button 'detalhes' or delete it by clicking the button 'deletar'. If an admin tries to delete an order, a window should appear to confirm. If an admin clicks the 'detalhes' button, they will be redirected to the order page, where it is possible to see all the order information and deliver that order by clicking the button 'Confirmar Entrega'.
 
-- **Review**
+- **Review:** An authenticated user must be able to write a review for each product in its respective product page. To do so, the user must set a rating from 0 to 5 and write a commentary and then click the button 'enviar'. After that, the review will appear in the Review Section of the product page.
 
 ## Test results
 
-All the tests mentioned before worked as expected in Google Chrome.
+All the tests mentioned before worked as expected in Google Chrome and Postman.
 
 ## Execution procedure
 

@@ -68,7 +68,7 @@ export default function UserEditionPage(props) {
                         </div>
                         <div>
                             <button type="submit" className="primary">
-                                Atualizar
+                                atualizar
                             </button>
                         </div>
                     </>

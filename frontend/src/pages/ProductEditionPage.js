@@ -142,16 +142,6 @@ export default function ProductEditionPage(props) {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="image">Imagem</label>
-                            <input
-                                id="image"
-                                type="text"
-                                placeholder="Enter image"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
                             <label htmlFor="imageFile">Arquivo de Imagem</label>
                             <input
                                 type="file"
@@ -266,7 +256,7 @@ export default function ProductEditionPage(props) {
                         <div>
                             <label></label>
                             <button className="primary" type="submit">
-                                Atualizar
+                                atualizar
                             </button>
                         </div>
                     </>

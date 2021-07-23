@@ -71,14 +71,14 @@ export default function OrderListPage(props) {
                                             props.history.push(`/order/${order._id}`);
                                         }}
                                     >
-                                        Detalhes
+                                        detalhes
                                     </button>
                                     <button
                                         type="button"
                                         className="small"
                                         onClick={() => deleteHandler(order)}
                                     >
-                                        Deletar
+                                        deletar
                                     </button>
                                 </td>
                             </tr>

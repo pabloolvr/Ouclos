@@ -50,7 +50,7 @@ export default function ProductListPage(props) {
             <div className="row">
                 <h1>Produtos</h1>
                 <button type="button" className="primary" onClick={createHandler}>
-                    Criar Produto
+                    criar produto
                 </button>
             </div>
             {loadingDelete && <LoadingBox></LoadingBox>}
@@ -91,14 +91,14 @@ export default function ProductListPage(props) {
                                             props.history.push(`/product/${product._id}/edit`)
                                         }
                                     >
-                                        Edit
+                                        editar
                                     </button>
                                     <button
                                         type="button"
                                         className="small"
                                         onClick={() => deleteHandler(product)}
                                     >
-                                        Delete
+                                        deletar
                                     </button>
                                 </td>
                             </tr>

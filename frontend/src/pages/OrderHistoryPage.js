@@ -52,7 +52,7 @@ export default function OrderHistoryPage(props) {
                                             props.history.push(`/order/${order._id}`);
                                         }}
                                     >
-                                        Detalhes
+                                        detalhes
                                     </button>
                                 </td>
                             </tr>

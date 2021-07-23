@@ -154,7 +154,7 @@ function App() {
                     <AdminRoute path="/user/:id/edit" component={UserEditionPage}></AdminRoute>
                 </main>
                 <footer className="row center">
-                    All rights reserved
+                    Todos os direitos reservados.
                 </footer>
             </div>
         </BrowserRouter>
