@@ -143,13 +143,17 @@ The backend tests were made using Postman and browser.
 
 ### Frontend
 
-- **Register**
+- **Register:** The user must fill all the mandatory fields regarding to Personal Data, except phone. CPF and Email must be inserted in the correct formats otherwise there will be an error box informing to use the correct format. The fields regarding to Address are optional
 
-- **Login**
+- **Login:** To access the login page, the user must click in the 'acessar conta' button. Once there, the user must insert email and password correctly and a validation is done using info in the database. An error box informing that email or password are invalid should appear if they don't match the information in the database. If email and password match, the user is redirected to the home page and the button 'acessar conta' becomes 'Olá, <User Name>'.
+
+- **Search Products**
+
+- **Place Order**
 
 - **Edit Profile and Address**
 
-- **Acces Orders**
+- **Access Orders**
 
 - **User Management**
 
@@ -158,6 +162,8 @@ The backend tests were made using Postman and browser.
 - **Order Management**
 
 - **Cart**
+
+- **Review**
 
 ## Test results
 
