@@ -60,7 +60,6 @@ The backend tests were made using Postman and browser.
  Retorna a listagem de usuários;
 
  - get /
-
  Get data of all users from database. It requires user and admin authentication and if one of these two is not validated, a 401 error is returned.
 
  - get /:id
