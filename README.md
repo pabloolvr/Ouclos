@@ -172,7 +172,7 @@ governador valadares 308
 
 ## Test results
 
-All the tests mentioned before worked as expected in Google Chrome and Postman.
+All tests mentioned before worked as expected in Google Chrome and Postman.
 
 ## Execution procedure
 
@@ -214,16 +214,9 @@ $ npm install
 $ npm start
 ```
 
-### 6. Seed Users and Products
+### 6. Admin Login
 
-- Run this on chrome: http://localhost:5000/api/users/seed
-- It returns admin email and password
-- Run this on chrome: http://localhost:5000/api/products
-- It creates 10 sample products
-
-### 7. Admin Login
-
-- admin user: admin@example.com
+- admin user: admin@email.com
 - admin password: admin
  
 ## Issues
