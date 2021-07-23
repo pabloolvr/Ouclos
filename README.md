@@ -23,7 +23,7 @@ Web Project for SCC0219
 
 ## Project Description
 Navigation Diagram:
-![NavigationDiagram](https://user-images.githubusercontent.com/48020553/119233878-5461f780-bb01-11eb-8074-1bcd124773c3.jpg)
+![NavigationDiagram](https://user-images.githubusercontent.com/48020553/126726170-3f1b2ef5-7a46-4ff0-9951-47b662b73da8.jpg)
 ## Source comments
 ## Test plan
 ## Test results
