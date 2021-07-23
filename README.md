@@ -34,32 +34,31 @@ The source code of the project is consisted of two parts, frontend and backend.
 ### Frontend
 
 The frontend part contains all files related to the visual part of the system. It has a global ```index.css``` file, responsible for all the website styling and a ```store.css``` file, which is the redux store, responsible to hold the current application state inside of it. Inside the frontend part there are two directories, ```public```, which basically stores images used in the application and ```src```, which stores all the source code of the application, divided into the following directories:
- - ```actions```
- - ```components```
- - ```constants```
- - ```pages```
- - ```reducers```
+ - ```src/actions```
+ - ```src/components```
+ - ```src/constants```
+ - ```src/pages```
+ - ```src/reducers```
  
 ### Backend
+
+The backend part contains all files related to the data management part of the system. It have ```index.js```, responsible to run the server, ```utils.js```, responsible to implement authentication methods and ```data.js```, which stores predefined data to send to the database. The backend part has two directories:
+ - ```models```
+ - ```routers```
 
 ## Test plan
 ## Test results
 ## Execution procedure
 
- - Download or clone the project source code.
- - Install all required npm packages by running 'npm install' from the command line in the project root folder 'loja-oculos' (where the package.json is located).
- - Start the application by running 'npm run start' from the command line in the project root folder .
- - Your browser should automatically open at http://localhost:3000
-
-### 1. Install NodeJs and NPM
-
- - Install NodeJS and NPM from https://nodejs.org/en/download/.
-
-### 2. Download or Clone repo
+### 1. Download or Clone repo
 
 ```
 $ git@github.com:pabloolvr/ProjectDevWeb.git
 ```
+
+### 2. Install NodeJs and NPM
+
+ - Install NodeJS and NPM from https://nodejs.org/en/download/.
 
 ### 3. Setup MongoDB
 
@@ -91,7 +90,7 @@ $ npm start
 
 ### 6. Seed Users and Products
 
-- Run this on chrome: http://localhost:5000/api/users
+- Run this on chrome: http://localhost:5000/api/users/seed
 - It returns admin email and password
 - Run this on chrome: http://localhost:5000/api/products
 - It creates 10 sample products
