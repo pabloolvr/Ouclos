@@ -103,4 +103,4 @@ $ npm start
 - admin password: admin
  
 ## Issues
- Comments
+ None
