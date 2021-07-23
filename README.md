@@ -56,10 +56,13 @@ The backend tests were made using Postman and browser.
 
 #### /api/users
 
+ - GET /  
+ Retorna a listagem de usuários;
+
  - get /
 
  Get data of all users from database. It requires user and admin authentication and if one of these two is not validated, a 401 error is returned.
- 
+
  - get /:id
  Get data of a user with a given id. It returns a 404 error if id is not found in the database.
  - delete /:id
