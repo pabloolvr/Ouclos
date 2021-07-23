@@ -141,6 +141,8 @@ The backend tests were made using Postman and browser.
  - put ```/:id/deliver```  
  Set an order with a given id as delivered. It requires user and admin authentication, if at least one of these two is not validated, a 401 error is returned. It returns a 404 error if id is not found in the database.
 
+The backend tests were manually made in the browser.
+
 ### Frontend
 
 - **Register:** The user must fill all the mandatory fields regarding to Personal Data, except phone. CPF and Email must be inserted in the correct formats otherwise there will be an error box informing to use the correct format. The fields regarding to Address are optional
@@ -152,8 +154,9 @@ The backend tests were made using Postman and browser.
 - **Cart:** The user, authenticated or not, must be able to fill the cart by pressing the button 'adicionar ao carrinho' in a product page and select the quantity of a product in the cart page, which can be accessed by the header navigation throught the button 'sacola' or when the button 'adicionar ao carrinho' is pressed. In the cart page, the user must be able to finish the order by pressing 'finalizar compra'. If the user is authenticated, they are redirected directly to the address page, otherwise, the user must log in first in the login page and then redirected to the address page.
 
 - **Place Order:**  
-    - When finishing the order, the authenticated user will be redirected to the address page, where they must fill in all the necessary fields to the address. If the user has already an address registered, the fields are automatically field with the information from it. With exception of the number, all address fields are required and an error box appears if one of them is not inserted. The CEP field has a specific format and, if the user doesn't insert in this format, an error box appear informing the format is wrong.
-    - AAA
+    - When finishing the order, the authenticated user will be redirected to the address page, where they must fill in all the necessary fields to the address. If the user has already an address registered, the fields are automatically filled with the information from it. With exception of the number, all address fields are required and an error box appears if one of them is not inserted. The CEP field has a specific format and, if the user doesn't insert in this format, an error box appear informing the format is wrong.
+    - After clicking the button 'Continuar' in the address page, the user will be redirected to the payment page, where they must select the Payment Menthod, between credit or debit card, and fill all the field regarding to card information. All card fields are required and have an specific format. If a field is not filled or incorrectly filled, a error box appears warning about the respective error.
+    - After clicking the button 'Continuar' in the payment page, the user will be redirected to the place order page, showing the shipping address, payment method, items in cart and order summary. The user can then place the order by pressing the button 'finalizar pedido', being redirected to the order page, that shows all the order information.
 
 - **Edit Profile and Address**
 
@@ -169,7 +172,7 @@ The backend tests were made using Postman and browser.
 
 ## Test results
 
-All the tests mentioned before worked as expected.
+All the tests mentioned before worked as expected in Google Chrome.
 
 ## Execution procedure
 
