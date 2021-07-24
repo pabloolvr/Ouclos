@@ -80,7 +80,7 @@ The tests were manually made in the browser.
  - get ```/seed```  
  Get data of pre-defined users stored in ```data.js```. 
 
-#### /product
+#### /api/products
 
  - get ```/```  
  Get data of product from database based on a filter in req.
@@ -121,7 +121,7 @@ The tests were manually made in the browser.
  - post ```/:id/reviews```  
  Post a review of a product with a given id. It requires user authentication, if it is not validated, a 401 error is returned. It returns a 404 error if id is not found in the database.
 
-#### /order
+#### /api/orders
 
  - get ```/```  
  Get data of all orders from database. It requires user and admin authentication, if at least one of these two is not validated, a 401 error is returned.
