@@ -50,7 +50,7 @@ The backend part contains all files related to the data management part of the s
 
 ## Test plan
 
-The backend tests were made using Postman and browser. 
+The tests were manually made in the browser. 
 
 ### Backend
 
@@ -140,8 +140,6 @@ The backend tests were made using Postman and browser.
 
  - put ```/:id/deliver```  
  Set an order with a given id as delivered. It requires user and admin authentication, if at least one of these two is not validated, a 401 error is returned. It returns a 404 error if id is not found in the database.
-
-The backend tests were manually made in the browser.
 
 ### Frontend
 
