@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json()); // parse json data in the body of request
 app.use(express.urlencoded({ extended: true }));
 // connect to mongodb
-mongoose.connect(process.env.MONGODB_URL || "mongodb+srv://pablo:pablosenha@cluster0.nl6th.mongodb.net/ouclos?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ouclos', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
