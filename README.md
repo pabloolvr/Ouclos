@@ -207,6 +207,9 @@ $ npm start
 
 - admin user: admin@email.com
 - admin password: admin
+
+### Deployed app link
+ - https://ouclos.herokuapp.com/
  
 ## Issues
  None
