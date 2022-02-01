@@ -2,6 +2,9 @@
 
 Web Development Project for SCC0219
 
+### Deployed app link
+ - https://ouclos.herokuapp.com/
+ 
 ## Requirements
  - The system have 2 types of users: Customers and Administrators. The application already comes with an admin account with password admin.
 
@@ -208,8 +211,5 @@ $ npm start
 - admin user: admin@email.com
 - admin password: admin
 
-### Deployed app link
- - https://ouclos.herokuapp.com/
- 
 ## Issues
  None
